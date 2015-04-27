@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import play.*;
+import javax.persistence.*;
 
 @Entity
 public class Group {
