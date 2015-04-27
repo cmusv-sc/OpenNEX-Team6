@@ -7,20 +7,21 @@ import javax.persistence.*;
 @Entity
 public class Group {
 
+	private long groupId;  
 	private String groupDescription; 
 	private String groupName; 
-	private ArrayList<User> admins; 
-	private ArrayList<User> members; 
 
-	public Group(String groupName, 
-				 String groupDescription,
-				 ArrayList<User> admins,
-				 ArrayList<User> members){
+	public Group(long groupId,
+				 String groupName, 
+				 String groupDescription){
+		this.groupId = groupId; 
 		this.groupName = groupName; 
 		this.groupDescription = groupDescription;
-		this.admins = admins; 
-		this.members = members; 
 	}; 
+
+	public void setGroupId(long groupId){
+		this.groupId = groupId; 
+	}
 
 	public void setGroupDescription(String groupDescription){
 		this.groupDescription = groupDescription; 
@@ -30,12 +31,8 @@ public class Group {
 		this.groupName = groupName; 
 	}
 
-	public void setAdmins(ArrayList<User> admins){
-		this.admins = admins; 
-	}
-
-	public void setMembers(ArrayList<User> members){
-		this.members = members; 
+	public long getGroupId(){
+		return groupId; 
 	}
 
 	public String getGroupDescription(){
@@ -46,12 +43,9 @@ public class Group {
 		return groupName;
 	}
 
-	public ArrayList<User> getAdmins(){
-		return admins; 
+	public String toString(){
+		return "Group [group Id = " + groupId + ", group name = " + groupName + 
+			   ", group description = " + groupDescription + "]"; 
 	}
-
-	public ArrayList<User> getMembers(){
-		return members; 
-	}	
     
 }

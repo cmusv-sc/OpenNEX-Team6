@@ -4,18 +4,17 @@ import java.util.List;
 
 public interface GroupDAO {
 	/**
-	 * This method will save the information of the user into the database.
+	 * This method will save the information of the group into the database.
 	 * 
-	 * @param userPO
-	 *            - User information to be saved.
+	 * @param group
+	 *            - group information to be saved.
 	 */
 	void save(Group group);
 
 	/**
-	 * This method will load all the users in the
-	 * database.
+	 * This method will load all the groups in the database.
 	 * 
-	 * @return - List of all users.
+	 * @return - List of all groups.
 	 */
 	List<Group> loadGroups();
 }
