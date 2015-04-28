@@ -1,21 +1,39 @@
 package models;
 
 public class SQL {
-	
+
 	public static final String SA_USERS = "SA_USERS";
 	public static final String SA_GROUPS = "SA_GROUPS";
-	
-	
+	public static final String SA_SESSSIONS = "SA_SESSIONS";
+	public static final String SA_SESSION_TO_USERS = "SA_SESSION_TO_USERS";
+
+
 	public static final String CREATE_USERS = "create table IF NOT EXISTS "
 			+ SA_USERS + " ( user_id IDENTITY PRIMARY KEY,"
 			+ " user_name VARCHAR(100)," + " role_type VARCHAR(100) )";
-	
+
 	public static final String CREATE_GROUPS = "create table IF NOT EXISTS "
 			+ SA_GROUPS + " ( group_id IDENTITY PRIMARY KEY,"
 			+ " group_name VARCHAR(100)," + " group_description VARCHAR(512) )";
-	
+
+	public static final String CREATE_SESSION = "create table IF NOT EXISTS "
+			+ SA_SESSSIONS + " ( Id IDENTITY PRIMARY KEY AUTO_INCREMENT,"
+			+ " topic VARCHAR(100)," + " description VARCHAR(512) )"
+			+ " admin VARCHAR(100) )";
+
 	public static final String CHECK_TABLE_EXISTS_IN_DB = "SELECT count(1) as rowCount "
 			+ " FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = SCHEMA() "
 			+ " AND UPPER(TABLE_NAME) = UPPER(?)";
+
+	public static final String CREATE_SESSION_TO_USERS = "create table IF NOT EXISTS "
+			+ SA_SESSION_TO_USERS + " ( sessioId int NOT NULL,"
+			+ " user VARCHAR(100),"
+			+ " CONSTRAINT pk_sessionId PRIMARY KEY (sessionId,user) )";
+
+	public static final String GET_SESSION_BY_TOPIC = "SELECT * FROM "
+			+ SA_SESSSIONS + "WHERE topic = ?";
+
+	public static final String GET_SESSION_USERS = "SELECT users FROM "
+			+ SA_SESSION_TO_USERS + "WHERE Id = ?";
 
 }
