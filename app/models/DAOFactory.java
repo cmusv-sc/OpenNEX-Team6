@@ -34,4 +34,11 @@ public class DAOFactory {
 	public GroupDAO getGroupDAO() {
 		return new GroupDAOImpl();
 	}
+
+	/**
+	 * Get new object implementing Session DAO
+	 *
+	 * @return - Object implementing SessionDAO
+	 */
+	public SessionDAO getSessionDAO(){ return new SessionDAOImpl(); }
 }
