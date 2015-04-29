@@ -3,6 +3,7 @@ package models;
 import java.util.List;
 
 public interface GroupDAO {
+
 	/**
 	 * This method will save the information of the group into the database.
 	 * 
