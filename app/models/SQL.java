@@ -38,8 +38,7 @@ public class SQL {
 			+ " CONSTRAINT pk_sessionId PRIMARY KEY (sessionId,user) )";
 
 	public static final String INSERT_GROUP = "INSERT INTO " + SA_GROUPS + 
-			"(group_name, group_description, group_admin) " + 
-			"VALUES (" + VARCHAR(100) + ", " + VARCHAR(512) + ", " + VARCHAR(100) + ")"; 
+			"(group_name, group_description, group_admin) VALUES (?,?,?)"; 
 
 	public static final String GET_SESSION_BY_TOPIC = "SELECT * FROM "
 			+ SA_SESSSIONS + "WHERE topic = ?";
