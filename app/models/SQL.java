@@ -37,6 +37,10 @@ public class SQL {
 			+ " user VARCHAR(100),"
 			+ " CONSTRAINT pk_sessionId PRIMARY KEY (sessionId,user) )";
 
+	public static final String INSERT_GROUP = "INSERT INTO " + SA_GROUPS + 
+			"(group_name, group_description, group_admin) " + 
+			"VALUES (" + VARCHAR(100) + ", " + VARCHAR(512) + ", " + VARCHAR(100) + ")"; 
+
 	public static final String GET_SESSION_BY_TOPIC = "SELECT * FROM "
 			+ SA_SESSSIONS + "WHERE topic = ?";
 

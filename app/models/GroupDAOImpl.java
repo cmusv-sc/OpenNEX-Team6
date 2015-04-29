@@ -13,7 +13,7 @@ public class GroupDAOImpl extends CommonDAOImpl implements GroupDAO  {
 	public void save(Group group) {
         try {
             Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL.CREATE_GROUPS);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.INSERT_GROUP);
             preparedStatement.setString(1, group.getGroupName());
             preparedStatement.setString(2, group.getGroupDescription());
             preparedStatement.setString(3, group.getAdmin());
