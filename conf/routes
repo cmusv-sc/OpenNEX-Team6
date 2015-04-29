@@ -6,7 +6,7 @@
 GET         /                    controllers.Application.index()
 
 # Session page
-POST        /newSession          controllers.Session.createSession(topic, description, userName)
+POST        /newSession          controllers.Session.createSession()
 GET         /session             controllers.Session.index(topic)
 
 # Map static resources from the /public folder to the /assets URL path

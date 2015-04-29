@@ -2,6 +2,8 @@ package controllers;
 
 import models.DAOFactory;
 import models.SessionDAO;
+import play.api.data.Form;
+import play.data.DynamicForm;
 import play.mvc.*;
 import views.html.index;
 
@@ -23,19 +25,25 @@ public class Session extends Controller {
         return ok(views.html.session.render(session));
     }
 
-    public static Result createSession(String topic, String description, String userName){
+    public static Result createSession(){
         // Create session in DB
         DAOFactory daoFactory = DAOFactory.getInstance();
         SessionDAO sessionDAO = daoFactory.getSessionDAO();
-        models.Session session = new models.Session(topic, description, userName);
+
+        final DynamicForm form = play.data.Form.form().bindFromRequest();
+        final String topic = form.get("sessionTopic");
+        final String description = form.get("sessionDescription");
+        final String admin = form.get("admin");
+
+        models.Session session = new models.Session(topic, description, admin);
 
         // add session user to list
         List<String> sessionUsers = new ArrayList<String>();
-        sessionUsers.add(userName);
+        sessionUsers.add(admin);
         session.setSessionUsers(sessionUsers);
         sessionDAO.save(session);
 
         // render session tempelate
-        return ok(views.html.session.render(session));
+        return redirect("/session?topic = " + session.getSessionTopic());
     }
 }

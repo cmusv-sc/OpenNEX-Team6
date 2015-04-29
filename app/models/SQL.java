@@ -27,7 +27,7 @@ public class SQL {
 			+ SA_SESSSIONS + " ( Id IDENTITY PRIMARY KEY AUTO_INCREMENT,"
 			+ " topic VARCHAR(100)," + " description VARCHAR(512) )"
 			+ " admin VARCHAR(100) )";
-
+// Fix this
 	public static final String CHECK_TABLE_EXISTS_IN_DB = "SELECT count(1) as rowCount "
 			+ " FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = SCHEMA() "
 			+ " AND UPPER(TABLE_NAME) = UPPER(?)";
