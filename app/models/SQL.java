@@ -2,11 +2,13 @@ package models;
 
 public class SQL {
 
-	public static final String SA_USERS = "SA_USERS";
-	public static final String SA_GROUPS = "SA_GROUPS";
+	public static final String SA_USERS = "USER";
+	public static final String SA_GROUPS = "USER_GROUP";
 	public static final String SA_GROUP_TO_USERS = "SA_GROUP_TO_USERS";
-	public static final String SA_SESSSIONS = "SA_SESSIONS";
+	public static final String SA_SESSSIONS = "SESSION";
 	public static final String SA_SESSION_TO_USERS = "SA_SESSION_TO_USERS";
+	public static final String SA_PROJECTS = "PROJECT";
+	
 
 
 	public static final String CREATE_USERS = "create table IF NOT EXISTS "
@@ -47,6 +49,13 @@ public class SQL {
 			+ SA_SESSION_TO_USERS + "WHERE Id = ?";
 
 	public static final String GET_GROUPS = "SELECT ALL FROM " + SA_GROUPS;
+	
+	public static final String INSERT_USER = "INSERT INTO " + SA_USERS + "(email, password, session_id, user_group_id) VALUES (?,?,?,?)";
+	
+	public static final String LOAD_USERS = "SELECT email FROM " + SA_USERS;
+	
+	public static final String INSERT_PROJECT = "INSERT INTO " + SA_PROJECTS + "(description, session_id, user_group_id) VALUES (?,?,?)";
+
 
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by shbekti on 4/12/15.
+ * Created by vivenkat.
  */
 
 @Entity
@@ -29,10 +29,10 @@ public class User extends Model {
     public String password;
     
     @ManyToOne
-    public Session session;
+    public int session;
     
     @ManyToOne
-    public UserGroup userGroup;
+    public int userGroup;
 
     // add the list of messages/notifications
 
@@ -76,5 +76,47 @@ public class User extends Model {
     public interface SignUp { }
 
     public interface Update { }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getSession() {
+		return session;
+	}
+
+	public void setSession(int session) {
+		this.session = session;
+	}
+
+	public int getUserGroup() {
+		return userGroup;
+	}
+
+	public void setUserGroup(int userGroup) {
+		this.userGroup = userGroup;
+	}
+    
+    
 
 }

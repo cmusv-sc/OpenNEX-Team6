@@ -8,8 +8,9 @@ public interface UserDAO {
 	 * 
 	 * @param userPO
 	 *            - User information to be saved.
+	 * @throws Exception 
 	 */
-	void save(User user);
+	void save(User user) throws Exception;
 
 	/**
 	 * This method will load all the users in the
