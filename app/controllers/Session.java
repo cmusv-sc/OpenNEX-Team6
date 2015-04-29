@@ -1,7 +1,7 @@
 package controllers;
 
-import models.DAOFactory;
-import models.SessionDAO;
+//import models.DAOFactory;
+//import models.SessionDAO;
 import play.api.data.Form;
 import play.data.DynamicForm;
 import play.mvc.*;
@@ -10,13 +10,16 @@ import views.html.index;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.DAOFactory;
+import models.SessionDAO;
+
 /**
  * Created by gautammadaan on 4/28/15.
  */
 public class Session extends Controller {
 
     public static Result index(String sessionTopic){
-        // Get session details
+    	// Get session details
         DAOFactory daoFactory = DAOFactory.getInstance();
         SessionDAO sessionDAO = daoFactory.getSessionDAO();
         models.Session session = sessionDAO.getSessionFromTopic(sessionTopic);

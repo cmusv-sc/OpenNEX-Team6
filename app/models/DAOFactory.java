@@ -31,8 +31,8 @@ public class DAOFactory {
 	 * 
 	 * @return - Object implementing UserDAO
 	 */
-	public GroupDAO getGroupDAO() {
-		return new GroupDAOImpl();
+	public UserGroupDAO getGroupDAO() {
+		return new UserGroupDAOImpl();
 	}
 
 	/**

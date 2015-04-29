@@ -2,15 +2,31 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
+
 /**
  * Created by gautammadaan on 4/27/15.
  */
-public class Session {
+@Entity
+public class Session extends Model {
 
-    private int Id;
+    @Id
+    @Constraints.Min(10)
+    private int id;
+    
+    @Constraints.Required
     private String topic;
+    
+    @Constraints.Required
     private String description;
+    
     private List<String> users;
+    
+    @Constraints.Required
     private String admin;
 
     public Session(String topic, String description, String createdBy) {
@@ -20,7 +36,7 @@ public class Session {
     }
 
     /* Retrieve object state */
-    public int getSessionID(){ return Id; };
+    public int getSessionID(){ return id; };
 
     public List<String> getSessionUsers() {
         return this.users;
@@ -42,7 +58,7 @@ public class Session {
 
     public void setSessionUsers(List<String> sessionUsers){ this.users = sessionUsers; }
 
-    public void setSessionID(int sessionID){ this.Id = sessionID; }
+    public void setSessionID(int sessionID){ this.id = sessionID; }
 
     public void setSessionTopic(String sessionTopic){ this.topic = sessionTopic; }
 

@@ -1,19 +1,42 @@
 package models;
 
 import java.util.List;
+
 import play.*;
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
+
 import javax.persistence.*;
 
+import models.User.SignIn;
+import models.User.SignUp;
+import models.User.Update;
+
 @Entity
-public class Group {
+public class UserGroup extends Model { 
+		
+	@Id
+    @Constraints.Min(10)
+    public Long id;
 
-	private long groupId;  
-	private String groupDescription; 
+    @Column
+    @Constraints.Required
+    public String groupDescription;
+    
+	@Constraints.Required
 	private String groupName; 
-	private List<String> members;
+	
+	@OneToOne
+	private List<User> users;
+	
+	@OneToOne
     private String admin;
+	
+	@OneToOne
+	private Session session;
 
-	public Group(String groupName, 
+
+	public UserGroup(String groupName, 
 				 String groupDescription,
 				 String username){
 		this.groupName = groupName; 
@@ -22,7 +45,7 @@ public class Group {
 	}; 
 
 	public void setGroupId(long groupId){
-		this.groupId = groupId; 
+		this.id = groupId; 
 	}
 
 	public void setGroupDescription(String groupDescription){
@@ -37,12 +60,12 @@ public class Group {
         this.admin = admin;
     }
 
-    public void SetMembers(List<String> members) {
-        this.members = members;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 	public long getGroupId(){
-		return groupId; 
+		return id; 
 	}
 
 	public String getGroupDescription(){
@@ -57,12 +80,12 @@ public class Group {
         return this.admin;
     }
 
-    public List<String> getMembers() {
-        return this.members;
+    public List<User> getUsers() {
+        return this.users;
     }
 
 	public String toString(){
-		return "Group [group Id = " + groupId + ", group name = " + groupName + 
+		return "Group [group Id = " + id + ", group name = " + groupName + 
 			   ", group description = " + groupDescription + "]"; 
 	}
     

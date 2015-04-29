@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupDAOImpl extends CommonDAOImpl implements GroupDAO  {
+public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
 
 	@Override
-	public void save(Group group) {
+	public void save(UserGroup group) {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL.INSERT_GROUP);
@@ -26,8 +26,8 @@ public class GroupDAOImpl extends CommonDAOImpl implements GroupDAO  {
 	}
 
 	@Override
-	public List<Group> loadGroups() {
-		List<Group> result = new ArrayList<Group>();
+	public List<UserGroup> loadGroups() {
+		List<UserGroup> result = new ArrayList<UserGroup>();
 
 		try {
 			Connection connection = getConnection();
@@ -35,7 +35,7 @@ public class GroupDAOImpl extends CommonDAOImpl implements GroupDAO  {
 	        ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-	            Group group = new Group(resultSet.getString(1), 
+				UserGroup group = new UserGroup(resultSet.getString(1), 
 	            						resultSet.getString(2), 
 	            						resultSet.getString(3));
 	            result.add(group);
