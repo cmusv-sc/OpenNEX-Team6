@@ -13,12 +13,12 @@ public class Group {
 	private List<String> members;
     private String admin;
 
-	public Group(long groupId,
-				 String groupName, 
-				 String groupDescription){
-		this.groupId = groupId; 
+	public Group(String groupName, 
+				 String groupDescription,
+				 String username){
 		this.groupName = groupName; 
 		this.groupDescription = groupDescription;
+		this.admin = username; 
 	}; 
 
 	public void setGroupId(long groupId){
