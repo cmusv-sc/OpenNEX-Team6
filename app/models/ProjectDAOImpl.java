@@ -3,7 +3,6 @@ package models;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 public class ProjectDAOImpl extends CommonDAOImpl implements ProjectDAO {
 
@@ -14,8 +13,8 @@ public class ProjectDAOImpl extends CommonDAOImpl implements ProjectDAO {
                 Connection connection = getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL.INSERT_PROJECT);
                 preparedStatement.setString(1, project.getDescription());
-                preparedStatement.setLong(2, project.getSession());
-                preparedStatement.setLong(3, project.getUserGroup());
+                preparedStatement.setLong(2, project.getSession().getSessionID());
+                preparedStatement.setLong(3, project.getUserGroup().getGroupId());
 
                 executeStatement(preparedStatement);
                 connection.close();

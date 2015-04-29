@@ -7,7 +7,6 @@ import play.db.ebean.Model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by vivenkat.
@@ -18,22 +17,24 @@ public class User extends Model {
 
     @Id
     @Constraints.Min(10)
-    public Long id;
+    private Long id;
 
     @Constraints.Email
     @Column(unique = true)
     @Constraints.Required(groups = { SignIn.class, SignUp.class, Update.class })
-    public String email;
+    private String email;
 
     @Constraints.Required(groups = { SignIn.class, SignUp.class, Update.class })
-    public String password;
+    private String password;
     
     @ManyToOne
-    public int session;
+    private Session session;
     
     @ManyToOne
-    public int userGroup;
+    private UserGroup userGroup;
 
+    @OneToOne
+    private Task task;
     // add the list of messages/notifications
 
     public static Finder<Long, User> find = new Finder<Long, User>(
@@ -101,19 +102,19 @@ public class User extends Model {
 		this.password = password;
 	}
 
-	public int getSession() {
+	public Session getSession() {
 		return session;
 	}
 
-	public void setSession(int session) {
+	public void setSession(Session session) {
 		this.session = session;
 	}
 
-	public int getUserGroup() {
+	public UserGroup getUserGroup() {
 		return userGroup;
 	}
 
-	public void setUserGroup(int userGroup) {
+	public void setUserGroup(UserGroup userGroup) {
 		this.userGroup = userGroup;
 	}
     

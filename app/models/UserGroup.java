@@ -2,15 +2,10 @@ package models;
 
 import java.util.List;
 
-import play.*;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
-
-import models.User.SignIn;
-import models.User.SignUp;
-import models.User.Update;
 
 @Entity
 public class UserGroup extends Model { 

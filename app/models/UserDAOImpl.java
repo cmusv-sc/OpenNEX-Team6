@@ -15,8 +15,8 @@ public class UserDAOImpl extends CommonDAOImpl implements UserDAO {
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL.INSERT_USER);
                 preparedStatement.setString(1, user.getEmail());
                 preparedStatement.setString(2, user.getPassword());
-                preparedStatement.setLong(3, user.getSession());
-                preparedStatement.setLong(4, user.getUserGroup());
+                preparedStatement.setLong(3, user.getSession().getSessionID());
+                preparedStatement.setLong(4, user.getUserGroup().getGroupId());
 
                 executeStatement(preparedStatement);
                 connection.close();
