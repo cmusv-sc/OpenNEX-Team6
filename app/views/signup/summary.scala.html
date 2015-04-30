@@ -1,0 +1,14 @@
+@(user: UserFake)
+
+@main(Html("Account created!"), nav = "signup") {
+    
+    <h2>Welcome to OpenNEX, @user.username</h2>
+    
+    <p>A conformation email has been sent to @user.email. Please check your email in order to finish your registration.</p>
+    
+    <div class="actions">
+        <a href="@routes.Application.index" class="btn">Return</a>
+        <a href="@routes.Login.blank()" class="btn">Proceed to Login</a>
+    </div>
+    
+}
