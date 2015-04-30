@@ -10,11 +10,6 @@ GET     /signup                     controllers.SignUp.blank()
 GET     /users/fakeuser             controllers.SignUp.edit()
 POST    /signup                     controllers.SignUp.submit()
 
-# Contact
-GET     /contacts                   controllers.Contacts.blank()
-GET     /contacts/fakecontact       controllers.Contacts.edit()
-POST    /contacts                   controllers.Contacts.submit()
-
 # Login
 GET		/login 						controllers.Login.blank()
 POST	/loggedin					controllers.Login.submit()
