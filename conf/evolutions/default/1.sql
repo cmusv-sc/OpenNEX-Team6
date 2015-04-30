@@ -3,6 +3,12 @@
 
 # --- !Ups
 
+create table notification_event (
+  id                        bigint not null,
+  description               varchar(255),
+  constraint pk_notification_event primary key (id))
+;
+
 create table project (
   id                        bigint not null,
   description               varchar(255),
@@ -48,6 +54,32 @@ create table user_group (
   constraint pk_user_group primary key (id))
 ;
 
+
+create table notification_event_user (
+  notification_event_id          bigint not null,
+  user_id                        bigint not null,
+  constraint pk_notification_event_user primary key (notification_event_id, user_id))
+;
+
+create table notification_event_user_group (
+  notification_event_id          bigint not null,
+  user_group_id                  bigint not null,
+  constraint pk_notification_event_user_group primary key (notification_event_id, user_group_id))
+;
+
+create table notification_event_session (
+  notification_event_id          bigint not null,
+  session_id                     integer not null,
+  constraint pk_notification_event_session primary key (notification_event_id, session_id))
+;
+
+create table notification_event_project (
+  notification_event_id          bigint not null,
+  project_id                     bigint not null,
+  constraint pk_notification_event_project primary key (notification_event_id, project_id))
+;
+create sequence notification_event_seq;
+
 create sequence project_seq;
 
 create sequence session_seq;
@@ -81,9 +113,35 @@ create index ix_user_group_project_10 on user_group (project_id);
 
 
 
+alter table notification_event_user add constraint fk_notification_event_user_no_01 foreign key (notification_event_id) references notification_event (id) on delete restrict on update restrict;
+
+alter table notification_event_user add constraint fk_notification_event_user_us_02 foreign key (user_id) references user (id) on delete restrict on update restrict;
+
+alter table notification_event_user_group add constraint fk_notification_event_user_gr_01 foreign key (notification_event_id) references notification_event (id) on delete restrict on update restrict;
+
+alter table notification_event_user_group add constraint fk_notification_event_user_gr_02 foreign key (user_group_id) references user_group (id) on delete restrict on update restrict;
+
+alter table notification_event_session add constraint fk_notification_event_session_01 foreign key (notification_event_id) references notification_event (id) on delete restrict on update restrict;
+
+alter table notification_event_session add constraint fk_notification_event_session_02 foreign key (session_id) references session (id) on delete restrict on update restrict;
+
+alter table notification_event_project add constraint fk_notification_event_project_01 foreign key (notification_event_id) references notification_event (id) on delete restrict on update restrict;
+
+alter table notification_event_project add constraint fk_notification_event_project_02 foreign key (project_id) references project (id) on delete restrict on update restrict;
+
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
+
+drop table if exists notification_event;
+
+drop table if exists notification_event_user;
+
+drop table if exists notification_event_user_group;
+
+drop table if exists notification_event_session;
+
+drop table if exists notification_event_project;
 
 drop table if exists project;
 
@@ -96,6 +154,8 @@ drop table if exists user;
 drop table if exists user_group;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists notification_event_seq;
 
 drop sequence if exists project_seq;
 

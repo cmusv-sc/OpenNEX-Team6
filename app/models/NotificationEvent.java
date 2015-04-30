@@ -1,48 +1,72 @@
 package models;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-public class NotificationEvent {
 
-	/**
-	 * Any relevant ids: user id, group id, session id, project id etc. 
-	 */
-	private List<Long> ids; 
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
 
-	/**
-	 * Appropriate message for the event that will be displayed
-	 */
-	private String description; 
+@Entity
+public class NotificationEvent extends Model {
+	@Id
+    @Constraints.Min(10)
+    public Long id;
 
-	/**
-	 * Create a new notification event
-	 *
-	 * @ param ids 			Any ids that are associated with this event
-	 * @ param description  The description of this event
-	 */
-	public NotificationEvent(List<Long> ids, String description){
-		this.ids = ids; 
+    @Column
+    @Constraints.Required
+    private String description; 
+
+    @ManyToMany
+	private List<User> users; 
+
+    @ManyToMany
+	private List<UserGroup> groups; 
+
+    @ManyToMany
+	private List<Session> sessions; 
+
+    @ManyToMany
+	private List<Project> projects; 
+
+	public NotificationEvent(List<User> users, 
+							 List<UserGroup> groups,
+							 List<Session> sessions,
+							 List<Project> projects,
+							 String description){
+		this.users = users;
+		this.groups = groups;
+		this.sessions = sessions;
+		this.projects = projects;
 		this.description = description;
 	}
-
 
 	public void setDescription(String description){
 		this.description = description;
 	}
 
-	public List<Long> getIds(){
-		return ids; 
+	public List<User> getUsers(){
+		return users; 
+	}
+
+	public List<UserGroup> getGroups(){
+		return groups; 
+	}
+
+	public List<Session> getSessions(){
+		return sessions; 
+	}
+
+	public List<Project> getProjects(){
+		return projects; 
 	}
 
 	public String getDescription(){
 		return description; 
 	}
 
-	public String toString(){
-		return "Event [ Ids = " + ids + ", description = " + description + "]"; 
-
-	}
 }
