@@ -23,10 +23,26 @@ public interface SessionDAO {
     Session getSessionFromTopic(String sessionTopic);
 
     /**
-     * Get all session descriptions for user
+     * Get all sessions for user
      * @param userName
      * @return
      */
-    List<String> getSessionsForUser(String userName) throws SQLException;
+    List<Session> getSessionsForUser(String userName) throws SQLException;
+
+    /**
+     * Get all sessions for a project
+     * @param projectId
+     * @return
+     * @throws SQLException
+     */
+    List<Session> getSessionsForProject(Long projectId) throws SQLException;
+
+    /**
+     * Get all sessions for a group
+     * @param groupId
+     * @return
+     * @throws SQLException
+     */
+    List<Session> getSessionsForGroup(Long groupId) throws SQLException;
 
 }

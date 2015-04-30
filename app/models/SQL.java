@@ -25,27 +25,24 @@ public class SQL {
 
     public static final String GET_USERS_FOR_USERID = "select id, email from USER where id = ?";
 
-//    public static final String GET_USERS_FOR_SESSIONID = "select "
+    public static final String GET_USERS_FOR_SESSIONID = "SELECT * FROM " + SA_USERS
+            + " WHERE SESSION_ID = ?";
 
     /************************************ Session *********************************/
-
-    public static final String CREATE_SESSION_TO_USERS = "create table IF NOT EXISTS "
-            + SA_SESSION_TO_USERS + " ( sessionId int NOT NULL,"
-            + " userId int,"
-            + " CONSTRAINT pk_sessionId PRIMARY KEY (sessionId,userId) )";
 
     public static final String GET_SESSION_BY_TOPIC = "SELECT * FROM "
             + SA_SESSIONS + " WHERE topic = ?";
 
     public static final String GET_SESSIONS_FOR_ID = "select id, topic, description, admin from SESSION where id = ?";
 
-    public static final String GET_USER_SESSIONS = "SELECT SA_SESSION.topic FROM "
-            + SA_SESSIONS + " LEFT JOIN " + SA_SESSION_TO_USERS
-            + " ON SA_SESSION_TO_USERS.sessionId = SA_SESSION.Id"
-            + " WHERE SA_SESSION_TO_USERS.userId = ?";
+    public static final String GET_SESSIONID_FOR_USERID = "SELECT session_id FROM " + SA_USERS
+            + " WHERE id = ?";
 
-    public static final String GET_SESSION_USERS = "SELECT * FROM " + SA_USERS
-            + " WHERE SESSION_ID = ?";
+    public static final String GET_SESSIONID_FOR_GROUPID = "SELECT session_id FROM " + SA_GROUPS
+            + " WHERE id = ?";
+
+    public static final String GET_SESSIONID_FOR_PROJECTID = "SELECT session_id FROM " + SA_PROJECTS
+            + " WHERE id = ?";
 
     public static final String INSERT_SESSION = "INSERT INTO " + SA_SESSIONS +
             "(topic, description, admin) VALUES (?,?,?)";

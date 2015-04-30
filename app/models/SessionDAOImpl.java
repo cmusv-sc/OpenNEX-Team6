@@ -70,21 +70,76 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
     }
 
     @Override
-    public List<String> getSessionsForUser(String userName) throws SQLException {
+    public List<Session> getSessionsForUser(String userName) throws SQLException {
         if (userName.trim() != "" && userName != null){
-            // get user Id
+            // get Session Ids for the user
+            List<Long> sessionIds = new ArrayList<Long>();
             UserDAOImpl userDAO = new UserDAOImpl();
             User user = userDAO.findByName(userName);
             Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_USER_SESSIONS);
-            // get user ID
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_SESSIONID_FOR_USERID);
             preparedStatement.setLong(1, user.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<String> sessions = new ArrayList<String>();
             while (resultSet.next()){
-                String session = resultSet.getString(3);
-                sessions.add(session);
+                Long sessionId = resultSet.getLong(4);
+                sessionIds.add(sessionId);
             }
+
+            List<Session> sessions = new ArrayList<Session>();
+
+            // Get all sessions for the Ids
+            sessions = getSessionForSessionIds(sessionIds, connection, preparedStatement);
+
+            connection.close();
+            return sessions;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Session> getSessionsForProject(Long projectId) throws SQLException {
+        if (projectId != null){
+            // get Session Ids for the Project
+            List<Long> sessionIds = new ArrayList<Long>();
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_SESSIONID_FOR_PROJECTID);
+            preparedStatement.setLong(1, projectId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Long sessionId = resultSet.getLong(4);
+                sessionIds.add(sessionId);
+            }
+
+            List<Session> sessions = new ArrayList<Session>();
+
+            // Get all sessions for the Ids
+            sessions = getSessionForSessionIds(sessionIds, connection, preparedStatement);
+
+            connection.close();
+            return sessions;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Session> getSessionsForGroup(Long groupId) throws SQLException {
+        if (groupId != null){
+            // get Session Ids for the Project
+            List<Long> sessionIds = new ArrayList<Long>();
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_SESSIONID_FOR_GROUPID);
+            preparedStatement.setLong(1, groupId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Long sessionId = resultSet.getLong(4);
+                sessionIds.add(sessionId);
+            }
+
+            List<Session> sessions = new ArrayList<Session>();
+
+            // Get all sessions for the Ids
+            sessions = getSessionForSessionIds(sessionIds, connection, preparedStatement);
+
             connection.close();
             return sessions;
         }
@@ -100,7 +155,7 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
     private List<User> getUsersForSession(int id) throws SQLException {
         System.out.println("Inside Get USers");
         Connection connection = getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_SESSION_USERS);
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_USERS_FOR_SESSIONID);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         List<User> sessionUsers = new ArrayList<User>();
@@ -114,5 +169,27 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
         }
         connection.close();
         return sessionUsers;
+    }
+
+    /**
+     * return list of sessions for a list of sessionIds
+     * @param Ids
+     * @param conn
+     * @param stmt
+     * @return
+     * @throws SQLException
+     */
+    private List<Session> getSessionForSessionIds(List<Long> Ids, Connection conn, PreparedStatement stmt) throws SQLException {
+        List<Session> sessions = new ArrayList<Session>();
+        for (Long id : Ids) {
+            stmt = conn.prepareStatement(SQL.GET_SESSIONS_FOR_ID);
+            stmt.setLong(1, id);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()){
+                Session session = new Session(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+                sessions.add(session);
+            }
+        }
+        return sessions;
     }
 }
