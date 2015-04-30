@@ -30,11 +30,14 @@ public class User extends Model {
     @ManyToOne
     private Session session;
     
-    @ManyToOne
-    private UserGroup userGroup;
+    @OneToOne
+    public UserGroup userGroup;
 
     @OneToOne
     private Task task;
+    
+    @OneToOne
+    private Project project;
     // add the list of messages/notifications
 
     public static Finder<Long, User> find = new Finder<Long, User>(

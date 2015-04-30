@@ -29,7 +29,7 @@ public class Project extends Model {
     public UserGroup userGroup;
     
     @OneToOne
-    public List<User> users;
+    public User user;
 
 	public Long getId() {
 		return id;
@@ -63,12 +63,12 @@ public class Project extends Model {
 		this.userGroup = userGroup;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers(User user) {
+		this.user = user;
 	}
     
     

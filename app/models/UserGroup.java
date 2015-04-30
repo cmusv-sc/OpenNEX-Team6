@@ -12,23 +12,26 @@ public class UserGroup extends Model {
 		
 	@Id
     @Constraints.Min(10)
-    public Long id;
+    private Long id;
 
     @Column
     @Constraints.Required
-    public String groupDescription;
+    private String groupDescription;
     
 	@Constraints.Required
 	private String groupName; 
 	
 	@OneToOne
-	private List<User> users;
+    public User users;
 	
 	@OneToOne
     private String admin;
 	
 	@OneToOne
 	private Session session;
+	
+	@OneToOne
+	private Project project;
 
 
 	public UserGroup(String groupName, 
@@ -55,7 +58,7 @@ public class UserGroup extends Model {
         this.admin = admin;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(User users) {
         this.users = users;
     }
 
@@ -75,7 +78,7 @@ public class UserGroup extends Model {
         return this.admin;
     }
 
-    public List<User> getUsers() {
+    public User getUsers() {
         return this.users;
     }
 

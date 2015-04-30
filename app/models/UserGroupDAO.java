@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserGroupDAO {
@@ -18,4 +19,8 @@ public interface UserGroupDAO {
 	 * @return - List of all groups.
 	 */
 	List<UserGroup> loadGroups();
+
+	List<Project> findProjectsByUserGroupId(Long userId) throws Exception;
+
+	List<User> findUsersByUserGroupId(Long userGroupId) throws SQLException;
 }

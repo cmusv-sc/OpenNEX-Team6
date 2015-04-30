@@ -52,9 +52,29 @@ public class SQL {
 	
 	public static final String INSERT_USER = "INSERT INTO " + SA_USERS + "(email, password, session_id, user_group_id) VALUES (?,?,?,?)";
 	
-	public static final String LOAD_USERS = "SELECT email FROM " + SA_USERS;
+	public static final String LOAD_USERS = "SELECT * FROM " + SA_USERS;
 	
 	public static final String INSERT_PROJECT = "INSERT INTO " + SA_PROJECTS + "(description, session_id, user_group_id) VALUES (?,?,?)";
+	
+	public static final String GET_PROJECTIDS_FOR_USERID = "select PROJECT_ID from USER where id = ?";
+	
+	public static final String GET_USERSIDS_FOR_PROJECTID = "select USER_ID from PROJECT where id = ?";
+
+	public static final String GET_USERSIDS_FOR_USERGROUPID = "select USER_ID from USER_GROUP where id = ?";
+
+	
+	public static final String GET_PROJECTIDS_FOR_USERGROUPID = "select PROJECT_ID from USER_GROUP where id = ?";
+	
+	public static final String GET_PROJECTS_FOR_PROJECTID = "select id, description from PROJECT where id = ?";
+		
+	public static final String FIND_PROJECT_BY_PROJECTID = "select * from PROJECT where id = ?";
+	
+	
+	public static final String GET_USERS_FOR_USERID = "select id, email from USER where id = ?";
+	
+	public static final String GET_SESSIONS_FOR_ID = "select id, topic, description, admin from SESSION where id = ?";
+	
+	public static final String GET_USERGROUP_FOR_ID = "select id, GROUP_NAME, GROUP_DESCRIPTION, admin from USER_GROUP where id = ?";
 
 
 
