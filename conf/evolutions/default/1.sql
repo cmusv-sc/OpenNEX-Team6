@@ -12,7 +12,7 @@ create table project (
 ;
 
 create table session (
-  id                        integer not null,
+  id                        integer auto_increment not null,
   topic                     varchar(255),
   description               varchar(255),
   admin                     varchar(255),
@@ -23,7 +23,7 @@ create table user (
   id                        bigint not null,
   email                     varchar(255),
   password                  varchar(255),
-  session                   integer,
+  session_id                integer,
   user_group                integer,
   constraint uq_user_email unique (email),
   constraint pk_user primary key (id))
@@ -40,14 +40,14 @@ create table user_group (
 
 create sequence project_seq;
 
-create sequence session_seq;
-
 create sequence user_seq;
 
 create sequence user_group_seq;
 
-alter table user_group add constraint fk_user_group_session_1 foreign key (session_id) references session (id) on delete restrict on update restrict;
-create index ix_user_group_session_1 on user_group (session_id);
+alter table user add constraint fk_user_session_1 foreign key (session_id) references session (id) on delete restrict on update restrict;
+create index ix_user_session_1 on user (session_id);
+alter table user_group add constraint fk_user_group_session_2 foreign key (session_id) references session (id) on delete restrict on update restrict;
+create index ix_user_group_session_2 on user_group (session_id);
 
 
 
@@ -66,8 +66,6 @@ drop table if exists user_group;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists project_seq;
-
-drop sequence if exists session_seq;
 
 drop sequence if exists user_seq;
 

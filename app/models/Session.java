@@ -1,9 +1,9 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
@@ -16,6 +16,7 @@ public class Session extends Model {
 
     @Id
     @Constraints.Min(10)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Constraints.Required
@@ -23,8 +24,9 @@ public class Session extends Model {
     
     @Constraints.Required
     private String description;
-    
-    private List<String> users;
+
+//    @OneToMany(cascade=CascadeType.ALL, mappedBy = "session")
+    private List<User> users;
     
     @Constraints.Required
     private String admin;
@@ -38,7 +40,7 @@ public class Session extends Model {
     /* Retrieve object state */
     public int getSessionID(){ return id; };
 
-    public List<String> getSessionUsers() {
+    public List<User> getSessionUsers() {
         return this.users;
     }
 
@@ -56,7 +58,7 @@ public class Session extends Model {
 
     /* Set Object state */
 
-    public void setSessionUsers(List<String> sessionUsers){ this.users = sessionUsers; }
+    public void setSessionUsers(List<User> users){ this.users = users; }
 
     public void setSessionID(int sessionID){ this.id = sessionID; }
 

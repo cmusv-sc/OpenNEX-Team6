@@ -2,6 +2,7 @@ package controllers;
 
 //import models.DAOFactory;
 //import models.SessionDAO;
+import models.User;
 import play.api.data.Form;
 import play.data.DynamicForm;
 import play.mvc.*;
@@ -36,17 +37,23 @@ public class Session extends Controller {
         final DynamicForm form = play.data.Form.form().bindFromRequest();
         final String topic = form.get("sessionTopic");
         final String description = form.get("sessionDescription");
-        final String admin = form.get("admin");
+        final String admin = "Gautam";//form.get("admin");
 
         models.Session session = new models.Session(topic, description, admin);
 
         // add session user to list
-        List<String> sessionUsers = new ArrayList<String>();
-        sessionUsers.add(admin);
-        session.setSessionUsers(sessionUsers);
+//        List<String> sessionUsers = new ArrayList<String>();
+//        sessionUsers.add(admin);
+//        session.setSessionUsers(sessionUsers);
+        User user = new User();
+        user.setId((long) 1);
+        user.setEmail("admin@google.com");
+        List<User> users = new ArrayList<User>();
+        users.add(user);
+        session.setSessionUsers(users);
         sessionDAO.save(session);
 
         // render session tempelate
-        return redirect("/session?topic = " + session.getSessionTopic());
+        return redirect("/session?topic=" + session.getSessionTopic());
     }
 }

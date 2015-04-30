@@ -29,7 +29,7 @@ public class User extends Model {
     public String password;
     
     @ManyToOne
-    public int session;
+    public Session session;
     
     @ManyToOne
     public int userGroup;
@@ -45,6 +45,7 @@ public class User extends Model {
                 .eq("email", email)
                 .findUnique();
     }
+
 
     public static User byEmailAndPassword(String email, String password) {
         return find.where()
@@ -101,11 +102,11 @@ public class User extends Model {
 		this.password = password;
 	}
 
-	public int getSession() {
-		return session;
+	public Session getSession() {
+		return this.session;
 	}
 
-	public void setSession(int session) {
+	public void setSession(Session session) {
 		this.session = session;
 	}
 

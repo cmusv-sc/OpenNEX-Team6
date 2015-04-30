@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,9 +24,9 @@ public interface SessionDAO {
 
     /**
      * Get all session descriptions for user
-     * @param useName
+     * @param userName
      * @return
      */
-    List<String> getSessionsForUser(String useName);
+    List<String> getSessionsForUser(String userName) throws SQLException;
 
 }

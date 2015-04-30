@@ -3,8 +3,8 @@
 @main("Welcome to Play") {
 
 	<form action="@routes.Session.createSession()" method="POST">
-        <input name="topic" type="text">
-        <input name="description" type="text">
+        <input name="sessionTopic" type="text">
+        <input name="sessionDescription" type="text">
         <button>Create</button>
     </form>
     @play20.welcome(message, style = "Java")
