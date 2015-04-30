@@ -39,17 +39,24 @@ public class SQL {
 			+ " user VARCHAR(100),"
 			+ " CONSTRAINT pk_sessionId PRIMARY KEY (sessionId,user) )";
 
-	public static final String INSERT_GROUP = "INSERT INTO " + SA_GROUPS + 
-			"(group_name, group_description, group_admin) VALUES (?,?,?)"; 
-
 	public static final String GET_SESSION_BY_TOPIC = "SELECT * FROM "
 			+ SA_SESSSIONS + "WHERE topic = ?";
 
 	public static final String GET_SESSION_USERS = "SELECT users FROM "
 			+ SA_SESSION_TO_USERS + "WHERE Id = ?";
 
+	public static final String INSERT_GROUP = "INSERT INTO " + SA_GROUPS + "(group_name, group_description, admin, session_id) VALUES (?,?,?,?)";
+
 	public static final String GET_GROUPS = "SELECT ALL FROM " + SA_GROUPS;
+
+	public static final String GET_GROUP_BY_ID = "SELECT * FROM " + SA_GROUPS + "WHERE ID = ?";
+
+	public static final String GET_GROUP_BY_USER_ID = "SELECT * FROM " + SA_GROUPS + "WHERE ADMIN_ID = ?";
+
+	public static final String GET_GROUP_BY_SESSION_ID = "SELECT * FROM " + SA_GROUPS + "WHERE SESSION_ID = ?";
 	
+	public static final String GET_GROUP_BY_PROJECT_ID = "SELECT * FROM " + SA_GROUPS + "WHERE PROJECT_ID = ?";
+		
 	public static final String INSERT_USER = "INSERT INTO " + SA_USERS + "(email, password, session_id, user_group_id) VALUES (?,?,?,?)";
 	
 	public static final String LOAD_USERS = "SELECT * FROM " + SA_USERS;

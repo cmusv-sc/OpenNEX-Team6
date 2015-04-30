@@ -18,7 +18,7 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL.INSERT_GROUP);
             preparedStatement.setString(1, group.getGroupName());
             preparedStatement.setString(2, group.getGroupDescription());
-            preparedStatement.setString(3, group.getAdmin());
+            preparedStatement.setLong(3, group.getAdmin().getId());
 
             executeStatement(preparedStatement);
             connection.close();
@@ -38,8 +38,8 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
 
 			while (resultSet.next()) {
 				UserGroup group = new UserGroup(resultSet.getString(1), 
-	            						resultSet.getString(2), 
-	            						resultSet.getString(3));
+			            						resultSet.getString(2), 
+			            						User.byId(resultSet.getLong(3)));
 	            result.add(group);
 	        }
 	        connection.close();
@@ -118,5 +118,95 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
         return find.where()
                 .eq("id", id).findUnique();
     }
+
+	public UserGroup getGroupById(long groupId){
+		UserGroup group = new UserGroup();
+		try {
+			Connection connection = getConnection();
+	        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_GROUP_BY_ID);
+	        preparedStatement.setLong(1, groupId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+			group = new UserGroup(resultSet.getString(1), 
+        						  resultSet.getString(2), 
+        						  User.byId(resultSet.getLong(3)));
+
+	        connection.close();
+	    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+	    return group;		
+	}
+
+	public List<UserGroup> getGroupsByUserId(long userId){
+		List<UserGroup> result = new ArrayList<UserGroup>();
+		try {
+			Connection connection = getConnection();
+	        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_GROUP_BY_USER_ID);
+	        preparedStatement.setLong(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserGroup group = new UserGroup(resultSet.getString(1), 
+			            						resultSet.getString(2), 
+			            						User.byId(resultSet.getLong(3)));
+	            result.add(group);
+	        }
+	        
+	        connection.close();
+	    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+	    return result;		
+	}
+
+	public List<UserGroup> getGroupsBySessionId(long sessionId){
+		List<UserGroup> result = new ArrayList<UserGroup>();
+		try {
+			Connection connection = getConnection();
+	        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_GROUP_BY_SESSION_ID);
+	        preparedStatement.setLong(1, sessionId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserGroup group = new UserGroup(resultSet.getString(1), 
+			            						resultSet.getString(2), 
+			            						User.byId(resultSet.getLong(3)));
+	            result.add(group);
+	        }
+	        
+	        connection.close();
+	    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+	    return result;	
+	}
+
+	public List<UserGroup> getGroupsByProjectId(long projectId){
+		List<UserGroup> result = new ArrayList<UserGroup>();
+		try {
+			Connection connection = getConnection();
+	        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_GROUP_BY_PROJECT_ID);
+	        preparedStatement.setLong(1, projectId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserGroup group = new UserGroup(resultSet.getString(1), 
+			            						resultSet.getString(2), 
+			            						User.byId(resultSet.getLong(3)));
+	            result.add(group);
+	        }
+	        
+	        connection.close();
+	    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+	    return result;
+	}
+
 
 }

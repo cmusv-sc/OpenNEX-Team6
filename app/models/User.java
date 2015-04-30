@@ -44,6 +44,12 @@ public class User extends Model {
             Long.class, User.class
     );
 
+    public static User byId(Long id) {
+        return find.where()
+                .eq("id", id)
+                .findUnique();
+    }
+
     public static User byEmail(String email) {
         return find.where()
                 .eq("email", email)
@@ -81,45 +87,45 @@ public class User extends Model {
 
     public interface Update { }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Session getSession() {
-		return session;
-	}
+    public Session getSession() {
+        return session;
+    }
 
-	public void setSession(Session session) {
-		this.session = session;
-	}
+    public void setSession(Session session) {
+        this.session = session;
+    }
 
-	public UserGroup getUserGroup() {
-		return userGroup;
-	}
+    public UserGroup getUserGroup() {
+        return userGroup;
+    }
 
-	public void setUserGroup(UserGroup userGroup) {
-		this.userGroup = userGroup;
-	}
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
+    }
     
     
 
