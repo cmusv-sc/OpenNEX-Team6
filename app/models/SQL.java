@@ -50,7 +50,13 @@ public class SQL {
 	public static final String GET_GROUPS = "SELECT ALL FROM " + SA_GROUPS;
 
 	public static final String GET_GROUP_BY_ID = "SELECT * FROM " + SA_GROUPS + "WHERE ID = ?";
+
+	public static final String GET_GROUP_BY_USER_ID = "SELECT * FROM " + SA_GROUPS + "WHERE ADMIN_ID = ?";
+
+	public static final String GET_GROUP_BY_SESSION_ID = "SELECT * FROM " + SA_GROUPS + "WHERE SESSION_ID = ?";
 	
+	public static final String GET_GROUP_BY_PROJECT_ID = "SELECT * FROM " + SA_GROUPS + "WHERE PROJECT_ID = ?";
+		
 	public static final String INSERT_USER = "INSERT INTO " + SA_USERS + "(email, password, session_id, user_group_id) VALUES (?,?,?,?)";
 	
 	public static final String LOAD_USERS = "SELECT email FROM " + SA_USERS;

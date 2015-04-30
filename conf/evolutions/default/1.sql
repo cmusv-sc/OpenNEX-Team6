@@ -44,6 +44,7 @@ create table user_group (
   group_description         varchar(255),
   admin_id                  bigint,
   session_id                integer,
+  project_id                bigint,
   constraint pk_user_group primary key (id))
 ;
 
@@ -75,6 +76,8 @@ alter table user_group add constraint fk_user_group_admin_8 foreign key (admin_i
 create index ix_user_group_admin_8 on user_group (admin_id);
 alter table user_group add constraint fk_user_group_session_9 foreign key (session_id) references session (id) on delete restrict on update restrict;
 create index ix_user_group_session_9 on user_group (session_id);
+alter table user_group add constraint fk_user_group_project_10 foreign key (project_id) references project (id) on delete restrict on update restrict;
+create index ix_user_group_project_10 on user_group (project_id);
 
 
 

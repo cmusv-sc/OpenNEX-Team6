@@ -27,4 +27,25 @@ public interface UserGroupDAO {
 	 */
 	UserGroup getGroupById(long groupId);	
 
+	/**
+	 * This method will load all the groups associated to a user in the database.
+	 * 
+	 * @return - List of all groups associated to the user.
+	 */
+	List<UserGroup> getGroupsByUserId(long userId);
+
+	/**
+	 * This method will load all the groups associated to a session in the database.
+	 * 
+	 * @return - List of all groups associated to the session.
+	 */
+	List<UserGroup> getGroupsBySessionId(long sessionId);
+
+	/**
+	 * This method will load all the groups associated to a project in the database.
+	 * 
+	 * @return - List of all groups associated to the project.
+	 */
+	List<UserGroup> getGroupsByProjectId(long projectId);
+
 }

@@ -68,4 +68,74 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
 	    return group;		
 	}
 
+	public List<UserGroup> getGroupsByUserId(long userId){
+		List<UserGroup> result = new ArrayList<UserGroup>();
+		try {
+			Connection connection = getConnection();
+	        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_GROUP_BY_USER_ID);
+	        preparedStatement.setLong(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserGroup group = new UserGroup(resultSet.getString(1), 
+			            						resultSet.getString(2), 
+			            						User.byId(resultSet.getLong(3)));
+	            result.add(group);
+	        }
+	        
+	        connection.close();
+	    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+	    return result;		
+	}
+
+	public List<UserGroup> getGroupsBySessionId(long sessionId){
+		List<UserGroup> result = new ArrayList<UserGroup>();
+		try {
+			Connection connection = getConnection();
+	        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_GROUP_BY_SESSION_ID);
+	        preparedStatement.setLong(1, sessionId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserGroup group = new UserGroup(resultSet.getString(1), 
+			            						resultSet.getString(2), 
+			            						User.byId(resultSet.getLong(3)));
+	            result.add(group);
+	        }
+	        
+	        connection.close();
+	    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+	    return result;	
+	}
+
+	public List<UserGroup> getGroupsByProjectId(long projectId){
+		List<UserGroup> result = new ArrayList<UserGroup>();
+		try {
+			Connection connection = getConnection();
+	        PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_GROUP_BY_PROJECT_ID);
+	        preparedStatement.setLong(1, projectId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				UserGroup group = new UserGroup(resultSet.getString(1), 
+			            						resultSet.getString(2), 
+			            						User.byId(resultSet.getLong(3)));
+	            result.add(group);
+	        }
+	        
+	        connection.close();
+	    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+	    return result;
+	}
+
+
 }

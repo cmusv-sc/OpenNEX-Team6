@@ -30,6 +30,9 @@ public class UserGroup extends Model {
 	@OneToOne
 	private Session session;
 
+	@OneToOne
+	private Project project;
+
 	public UserGroup(){};
 
 	public UserGroup(String groupName, 
