@@ -23,13 +23,13 @@ public class Project extends Model {
     public String description;
     
     @OneToOne
-    public int session;
+    public Session session;
     
     @OneToOne
-    public int userGroup;
+    public UserGroup userGroup;
     
     @OneToOne
-    public List<User> users;
+    public User user;
 
 	public Long getId() {
 		return id;
@@ -47,28 +47,28 @@ public class Project extends Model {
 		this.description = description;
 	}
 
-	public int getSession() {
+	public Session getSession() {
 		return session;
 	}
 
-	public void setSession(int session) {
+	public void setSession(Session session) {
 		this.session = session;
 	}
 
-	public int getUserGroup() {
+	public UserGroup getUserGroup() {
 		return userGroup;
 	}
 
-	public void setUserGroup(int userGroup) {
+	public void setUserGroup(UserGroup userGroup) {
 		this.userGroup = userGroup;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers(User user) {
+		this.user = user;
 	}
     
     

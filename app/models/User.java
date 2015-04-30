@@ -7,7 +7,6 @@ import play.db.ebean.Model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by vivenkat.
@@ -18,27 +17,38 @@ public class User extends Model {
 
     @Id
     @Constraints.Min(10)
-    public Long id;
+    private Long id;
 
     @Constraints.Email
     @Column(unique = true)
     @Constraints.Required(groups = { SignIn.class, SignUp.class, Update.class })
-    public String email;
+    private String email;
 
     @Constraints.Required(groups = { SignIn.class, SignUp.class, Update.class })
-    public String password;
+    private String password;
     
     @ManyToOne
-    public Session session;
+    private Session session;
     
-    @ManyToOne
-    public int userGroup;
+    @OneToOne
+    private UserGroup userGroup;
 
+    @OneToOne
+    private Task task;
+    
+    @OneToOne
+    private Project project;
     // add the list of messages/notifications
 
     public static Finder<Long, User> find = new Finder<Long, User>(
             Long.class, User.class
     );
+
+    public static User byId(Long id) {
+        return find.where()
+                .eq("id", id)
+                .findUnique();
+    }
 
     public static User byEmail(String email) {
         return find.where()
@@ -106,17 +116,17 @@ public class User extends Model {
 		return this.session;
 	}
 
-	public void setSession(Session session) {
-		this.session = session;
-	}
+    public void setSession(Session session) {
+        this.session = session;
+    }
 
-	public int getUserGroup() {
-		return userGroup;
-	}
+    public UserGroup getUserGroup() {
+        return userGroup;
+    }
 
-	public void setUserGroup(int userGroup) {
-		this.userGroup = userGroup;
-	}
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
+    }
     
     
 

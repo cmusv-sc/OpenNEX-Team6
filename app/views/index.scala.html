@@ -1,12 +1,23 @@
-@(message: String)
+@main(Html("OpenNEX")) {
+    
+    <h2>Welcome to OpenNEX</h2>
+    
+    <p>
+        OpenNEX gives you access to NASA's open data and engage in virtual labs.
+    </p>
 
-@main("Welcome to Play") {
 
-	<form action="@routes.Session.createSession()" method="POST">
-        <input name="sessionTopic" type="text">
-        <input name="sessionDescription" type="text">
-        <button>Create</button>
-    </form>
-    @play20.welcome(message, style = "Java")
+    <h3>Join OpenNEX today</h3>
+    
 
+    <p>
+        <a class="btn" href="@routes.SignUp.blank">Register Here »</a>
+    </p>
+    
+    <h3>Already Have an account?</h3>
+    
+    <p>
+        <a class="btn" href="@routes.Login.blank">Login »</a>
+    </p>
+    
 }

@@ -1,0 +1,140 @@
+@(user: UserFake)
+
+@main(Html("My OpenNEX Homepage"), nav = "user") {
+    
+    <div class="row">
+        <div class="span6">
+            <div class="alert-message block-message info">
+                <h2>Welcome, @user.username</h2>
+                <p>Member since <span class="session-date">FEB 12, 2015</span></p>
+                <p>You are a part of <strong>3</strong> groups and <strong>2</strong> projects.
+            </div>
+            <h3>At a Glance</h3>
+            <h5>You have <strong>2</strong> upcoming sessions today:</h5>
+            <ul>
+                <li><a>This session</a> at <span class="session-date">4:00 pm</span></li>
+                <li><a>That session</a> at <span class="session-date">8:00 pm</span></li>
+            </ul>
+            <h5>You have <strong>7</strong> pending tasks:</h5>
+            <ul>
+                <li>Buy groceries</li>
+                <li>Complete the workflow for something</li>
+                <li>Make dinner</li>
+                <li>Do stuff</li>
+                <li><a>3 more tasks</a>...</li>
+            </ul>
+            <button class="btn small">Edit tasks</button>
+        </div>
+        <div class="span8">
+            <h3>Active Projects</h3>
+            <div class="well">
+                <h5>Earthquake Prediction Project</h5>
+                <p>This project is about predicting earthquake by running workflows.</p>
+                <p><strong>Current Task:</strong> <a>Complete the workflow for something</a></p>
+                <button class="btn small primary">Go to project</button>
+            </div>
+            <div class="well">
+                <h5>OpenNEX prototype</h5>
+                <p>Sed nulla orci, feugiat nec blandit ac, congue pretium ex. Vestibulum blandit sapien eget lacus laoreet elementum. Donec tristique magna eget sodales fermentum. Aliquam pellentesque dictum ipsum, sit amet congue nulla.</p>
+                <p>No Pending Tasks</p>
+                <button class="btn small primary">Go to project</button>
+            </div>
+        </div>
+    </div>
+
+	<div class="row">
+		<div class="span9">
+    		<h3>Alerts and Events</h3>
+            <div class="alert-message block-message error">
+                <a class="close" href="#">&times;</a>
+                <p>You have been invited to join the group <a>Scientists Against Drunk Driving</a></p>
+                <br/>
+                <a class="btn small">Accept</a> <a class="btn small">Decline</a>
+            </div>
+            <div class="alert-message block-message error">
+                <a class="close" href="#">&times;</a>
+                <p>The workflow <a>Data Analysis</a> has completed its execution</p>
+                <br/>
+                <a class="btn small">View Results</a>
+            </div>
+            <div class="well">
+                <p><a>Jane Doe</a> posted:
+                <blockquote>Has anyone really been far even as decided to use even go want to do look more like?</blockquote>
+                <span class="session-date">11:25 am APR 27, 2015</span>
+            </div>
+            <div class="well">
+                <p><a>James Brown</a> pushed changes to the workflow <a>Earthquake Prediction Model</a></p>
+                <span class="session-date">12:29 pm APR 26, 2015</span>
+            </div>
+            <div class="well">
+                <p><a>Earthquake Data Group</a> posted:
+                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et elit sed sem iaculis sodales. Fusce elementum tortor a accumsan feugiat. Morbi tempus maximus mauris, quis ultrices ipsum semper nec. Nunc tincidunt in eros ut rhoncus. Aliquam viverra enim dolor, sed mollis erat varius nec. Vivamus ipsum dolor, lobortis vel convallis ac, hendrerit et urna. Praesent massa neque, maximus id nibh sit amet, consequat sagittis nisi. Aenean eget egestas diam, nec sagittis lorem. Sed sit amet leo iaculis, porttitor est sit amet, lobortis justo. Quisque iaculis posuere dui rhoncus viverra. Duis posuere sollicitudin accumsan.</blockquote>
+                <span class="session-date">3:37 pm APR 25, 2015</span>
+            </div>
+            <div class="well">
+                <p><a>John Smith</a> posted:
+                <blockquote>Yo does anyone want to go to Taco Bell?</blockquote>
+                <span class="session-date">4:20 pm APR 20, 2015</span>
+            </div>
+  		</div>
+  		<div class="span5">
+    		<h3>Sessions</h3>
+            <div class="well">
+                <span class="label important">Live Now</span>&nbsp;<strong>OpenNEX Team 6</strong>
+                <p class="session-date">7:00 pm-10:00 pm APR 29, 2015</p>
+                <p>Work on our OpenNEX project</p>
+                <button class="btn small">Join Now »</button>
+            </div>
+            <div class="well">
+                <span class="label notice">Upcoming</span>&nbsp;<strong>Earthquake Meeting</strong>
+                <p class="session-date">7:00 pm-8:00 pm APR 30, 2015</p>
+                <p>Weekly meeting for the earthquake interest group</p>
+            </div>
+            <div class="well">
+                <span class="label notice">Upcoming</span>&nbsp;<strong>Data Collection Lab</strong>
+                <p class="session-date">4:00 pm-6:30 pm MAY 2, 2015</p>
+                <p>Interactive lab session on data collection</p>
+            </div>
+            <div class="well">
+                <span class="label">Previous</span>&nbsp;<strong>Declare Independence</strong>
+                <p class="session-date">8:00 am-2:00 pm JLY 4, 1776</p>
+                <p>USA USA USA USA</p>
+            </div>
+            <div class="well">
+                <span class="label">Previous</span>&nbsp;<strong>OpenNEX Team 6</strong>
+                <p class="session-date">7:00 pm-10:00 pm APR 28, 2015</p>
+                <p>Work on our OpenNEX project again</p>
+            </div>
+  		</div>
+	</div>
+
+    <h3>My Groups</h3>
+
+    <div class='row'>
+        <div class='span4'>
+            <h5>Earthquake Data Group</h5>
+            <h6>26 Members</h6>
+            <div style="height:150px">
+                <p>This group is for people who have an interest in data from earthquakes. This group aims to use data from earthquakes to do things. Earthquake this earthquake that. One two three four five six seven eight nine ten.</p>
+            </div>
+            <button class="btn">Go to group »</button>
+        </div>
+        <div class='span4'>
+            <h5>OpenNEX Team 6</h5>
+            <h6>4 Members</h6>
+            <div style="height:150px">
+                <p>Project management and social networking team for OpenNEX.</p>
+            </div>
+            <button class="btn">Go to group »</button>
+        </div>
+        <div class='span4'>
+            <h5>Some Other Group</h5>
+            <h6>259 Members</h6>
+            <div style="height:150px">
+                <p>This is another group something something idk. Lorem ipsum something blah blah blah.</p>
+            </div>
+            <button class="btn">Go to group »</button>
+        </div>
+    </div>
+    
+}
