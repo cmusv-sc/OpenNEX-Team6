@@ -1,0 +1,39 @@
+@(signupForm: Form[UserGroup])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+    Create Group
+}
+
+@main(title, nav = "makegroup") {
+    
+    @helper.form(action = routes.MakeGroup.submit) {
+        
+        <fieldset>
+            <legend>Group information</legend>
+            
+            @inputText(
+                signupForm("username"), 
+                '_label -> "Name", 
+                '_help -> "Enter the name of your group.",
+                '_error -> signupForm.globalError
+            )
+            
+            @textarea(
+                signupForm("desc"),
+                '_label -> "Description",
+                '_help -> "Enter a short description about your group."
+            )
+            
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Create this group">
+            <a href="@routes.Application.index" class="btn">Cancel</a>
+        </div>
+        
+    }
+    
+}

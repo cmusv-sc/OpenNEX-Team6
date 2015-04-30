@@ -15,8 +15,25 @@ GET		/login 						controllers.Login.blank()
 POST	/loggedin					controllers.Login.submit()
 
 # Session page
-POST		/newSession          controllers.Session.createSession()
-GET         /session             controllers.Session.index(topic)
+POST		/newSession          	controllers.Session.createSession()
+GET         /session             	controllers.Session.index(topic)
+
+# Make group
+GET 		/makegroup				controllers.MakeGroup.blank()
+POST		/groupmade				controllers.MakeGroup.submit()
+
+# Find
+GET			/findgroup				controllers.FindGroup.blank()
+GET			/group 					controllers.FindGroup.submit()
+
+# Make session
+GET			/makesession			controllers.MakeSession.blank()
+POST		/sessionmade			controllers.MakeSession.submit()
+
+
+# Make project
+GET			/makeproject			controllers.MakeProject.blank()
+POST		/projectmade			controllers.MakeProject.submit()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)

@@ -1,0 +1,41 @@
+@(loginForm: Form[UserGroup])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+    Search
+}
+
+@main(title, nav = "find") {
+    
+    @helper.form(action = routes.FindGroup.submit) {
+        
+        <fieldset>
+            <legend>Search</legend>
+            
+            @inputText(
+                loginForm("username"), 
+                '_label -> "Search Term", 
+                '_help -> "",
+                '_error -> loginForm.globalError
+            )
+
+            @select(
+                loginForm("profile.country"), 
+                options = options(SearchTypes.list),
+                '_default -> "--- Search for ---",
+                '_label -> "Search type",
+                '_error -> loginForm("profile.country").error.map(_.withMessage("Please select a search type"))
+            )
+
+        </fieldset>
+
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Go">
+            <a href="@routes.Application.index" class="btn">Cancel</a>
+        </div>
+        
+    }
+    
+}

@@ -1,0 +1,12 @@
+@(user: UserGroup)
+
+@main(Html("Group created!"), nav = "makegroup") {
+    
+    <div class="alert-message block-message success">
+    	<strong>Success!</strong> Your group has been created. You may now add admins and members to your group.
+    	</br></br>
+        <a href="@routes.Application.index" class="btn">Return</a>
+        <a href="@routes.Login.blank()" class="btn">Proceed to group</a>
+    </div>
+    
+}

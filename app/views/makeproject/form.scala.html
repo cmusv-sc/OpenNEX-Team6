@@ -1,0 +1,39 @@
+@(signupForm: Form[Project])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+    Create Project
+}
+
+@main(title, nav = "makeproject") {
+    
+    @helper.form(action = routes.MakeGroup.submit) {
+        
+        <fieldset>
+            <legend>Project information</legend>
+            
+            @inputText(
+                signupForm("username"), 
+                '_label -> "Name", 
+                '_help -> "Enter the name of your project.",
+                '_error -> signupForm.globalError
+            )
+            
+            @textarea(
+                signupForm("desc"),
+                '_label -> "Description",
+                '_help -> "Enter a short description about your project."
+            )
+            
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Create this project">
+            <a href="@routes.Application.index" class="btn">Cancel</a>
+        </div>
+        
+    }
+    
+}

@@ -23,6 +23,18 @@
                         <li class="@("active".when(nav == "login"))">
                             <a href="@routes.Login.blank()">Login</a>
                         </li>
+                        <li class="@("active".when(nav == "makegroup"))">
+                            <a href="@routes.MakeGroup.blank()">Create Group</a>
+                        </li>
+                        <li class="@("active".when(nav == "makesession"))">
+                            <a href="@routes.MakeSession.blank()">Create Session </a>
+                        </li>
+                        <li class="@("active".when(nav == "makeproject"))">
+                            <a href="@routes.MakeProject.blank()">Create Project</a>
+                        </li>
+                        <li class="@("active".when(nav == "search"))">
+                            <a href="@routes.FindGroup.blank()">Search</a>
+                        </li>
                     </ul>
                 </div>
             </div>
