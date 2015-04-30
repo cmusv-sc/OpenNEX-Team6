@@ -78,7 +78,7 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_USER_SESSIONS);
             // get user ID
-            preparedStatement.setLong(1, user.id);
+            preparedStatement.setLong(1, user.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             List<String> sessions = new ArrayList<String>();
             while (resultSet.next()){

@@ -1,4 +1,5 @@
 .idea*
+.idea/*
 RUNNING_PID
 logs/*
 project/project/*

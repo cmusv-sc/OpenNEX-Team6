@@ -25,6 +25,8 @@ public class SQL {
 
     public static final String GET_USERS_FOR_USERID = "select id, email from USER where id = ?";
 
+//    public static final String GET_USERS_FOR_SESSIONID = "select "
+
     /************************************ Session *********************************/
 
     public static final String CREATE_SESSION_TO_USERS = "create table IF NOT EXISTS "
