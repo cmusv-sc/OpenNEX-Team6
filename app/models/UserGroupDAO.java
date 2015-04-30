@@ -18,4 +18,13 @@ public interface UserGroupDAO {
 	 * @return - List of all groups.
 	 */
 	List<UserGroup> loadGroups();
+
+	/**
+	 * This method will load a specific group in the database.
+	 * 
+	 * @return - group
+	 * 				- group associated with groupId
+	 */
+	UserGroup getGroupById(long groupId);	
+
 }

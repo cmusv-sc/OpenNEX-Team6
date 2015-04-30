@@ -40,9 +40,9 @@ create table user (
 
 create table user_group (
   id                        bigint not null,
-  group_description         varchar(255),
   group_name                varchar(255),
-  admin                     varchar(255),
+  group_description         varchar(255),
+  admin_id                  bigint,
   session_id                integer,
   constraint pk_user_group primary key (id))
 ;
@@ -71,8 +71,10 @@ alter table user add constraint fk_user_userGroup_6 foreign key (user_group_id) 
 create index ix_user_userGroup_6 on user (user_group_id);
 alter table user add constraint fk_user_task_7 foreign key (task_id) references task (id) on delete restrict on update restrict;
 create index ix_user_task_7 on user (task_id);
-alter table user_group add constraint fk_user_group_session_8 foreign key (session_id) references session (id) on delete restrict on update restrict;
-create index ix_user_group_session_8 on user_group (session_id);
+alter table user_group add constraint fk_user_group_admin_8 foreign key (admin_id) references user (id) on delete restrict on update restrict;
+create index ix_user_group_admin_8 on user_group (admin_id);
+alter table user_group add constraint fk_user_group_session_9 foreign key (session_id) references session (id) on delete restrict on update restrict;
+create index ix_user_group_session_9 on user_group (session_id);
 
 
 

@@ -41,6 +41,12 @@ public class User extends Model {
             Long.class, User.class
     );
 
+    public static User byId(Long id) {
+        return find.where()
+                .eq("id", id)
+                .findUnique();
+    }
+
     public static User byEmail(String email) {
         return find.where()
                 .eq("email", email)

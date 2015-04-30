@@ -15,28 +15,29 @@ public class UserGroup extends Model {
     public Long id;
 
     @Column
-    @Constraints.Required
-    public String groupDescription;
-    
 	@Constraints.Required
 	private String groupName; 
+
+    @Constraints.Required
+    public String groupDescription;
 	
 	@OneToOne
 	private List<User> users;
 	
 	@OneToOne
-    private String admin;
+    private User admin;
 	
 	@OneToOne
 	private Session session;
 
+	public UserGroup(){};
 
 	public UserGroup(String groupName, 
-				 String groupDescription,
-				 String username){
+					 String groupDescription,
+					 User admin){
 		this.groupName = groupName; 
 		this.groupDescription = groupDescription;
-		this.admin = username; 
+		this.admin = admin; 
 	}; 
 
 	public void setGroupId(long groupId){
@@ -51,12 +52,16 @@ public class UserGroup extends Model {
 		this.groupName = groupName; 
 	}
 
-    public void setAdmin(String admin){
+    public void setAdmin(User admin){
         this.admin = admin;
     }
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 
 	public long getGroupId(){
@@ -71,12 +76,16 @@ public class UserGroup extends Model {
 		return groupName;
 	}
 
-    public String getAdmin(){
+    public User getAdmin(){
         return this.admin;
     }
 
     public List<User> getUsers() {
         return this.users;
+    }
+
+    public Session getSession() {
+        return this.session;
     }
 
 	public String toString(){
