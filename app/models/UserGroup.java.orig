@@ -15,11 +15,17 @@ public class UserGroup extends Model {
     private Long id;
 
     @Column
+<<<<<<< HEAD
+    @Constraints.Required
+    private String groupDescription;
+    
+=======
+>>>>>>> 19dc82f4036ec87d17234f84e95fa9295da9b5aa
 	@Constraints.Required
 	private String groupName; 
 
     @Constraints.Required
-    private String groupDescription; 
+    public String groupDescription;
 	
 	@OneToOne
     public User users;
@@ -33,6 +39,8 @@ public class UserGroup extends Model {
 	@OneToOne
 	private Project project;
 
+	@OneToOne
+	private Project project;
 
 	public UserGroup(){};
 

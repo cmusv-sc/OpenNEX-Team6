@@ -98,7 +98,7 @@ public class ProjectDAOImpl extends CommonDAOImpl implements ProjectDAO {
 			ResultSet resultSet2 = preparedStatement2.executeQuery();
 			
 			while(resultSet.next()) {
-				userGroup = new UserGroup(resultSet2.getString(2), resultSet2.getString(3), resultSet2.getString(4));
+				//userGroup = new UserGroup(resultSet2.getString(2), resultSet2.getString(3), resultSet2.getString(4));
 			}
 			
 			PreparedStatement preparedStatement3 = connection.prepareStatement(SQL.GET_USERS_FOR_USERID);
@@ -111,7 +111,7 @@ public class ProjectDAOImpl extends CommonDAOImpl implements ProjectDAO {
 			}
 			
 			project.setSession(session);
-			project.setUserGroup(userGroup);
+			//project.setUserGroup(userGroup);
 			project.setUsers(user);
 			
 			return project;

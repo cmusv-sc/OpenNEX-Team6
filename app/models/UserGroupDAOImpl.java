@@ -114,11 +114,13 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
             Long.class, User.class
     );
 	
+	@Override
 	public User byID(Long id) {
         return find.where()
                 .eq("id", id).findUnique();
     }
 
+	@Override
 	public UserGroup getGroupById(long groupId){
 		UserGroup group = new UserGroup();
 		try {
@@ -139,6 +141,7 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
 	    return group;		
 	}
 
+	@Override
 	public List<UserGroup> getGroupsByUserId(long userId){
 		List<UserGroup> result = new ArrayList<UserGroup>();
 		try {
@@ -162,6 +165,7 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
 	    return result;		
 	}
 
+	@Override
 	public List<UserGroup> getGroupsBySessionId(long sessionId){
 		List<UserGroup> result = new ArrayList<UserGroup>();
 		try {
@@ -185,6 +189,7 @@ public class UserGroupDAOImpl extends CommonDAOImpl implements UserGroupDAO  {
 	    return result;	
 	}
 
+	@Override
 	public List<UserGroup> getGroupsByProjectId(long projectId){
 		List<UserGroup> result = new ArrayList<UserGroup>();
 		try {

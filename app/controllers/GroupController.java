@@ -47,7 +47,4 @@ public class GroupController extends Controller {
         // render groups
         return ok(views.html.group.render(group));
     }
-
-     
-
 }
