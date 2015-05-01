@@ -1,13 +1,13 @@
-@(user: UserGroup)
+@(project: models.Project)
 
 @main(Html("Project Summary"), nav = "") {
     
     <div class="row">
         <div class="span14">
 
-            <h2>Project title</h2>
+            <h2>@project.getName</h2>
             <div class="well">
-                Proin eget interdum turpis. Duis consectetur, libero a porttitor mattis, neque magna consectetur nisl, at mattis magna tellus non nulla. Sed tristique tristique tellus, in condimentum tellus volutpat quis. Aenean nibh odio, dictum vel posuere ut, facilisis viverra eros. Donec efficitur eu nibh sagittis scelerisque. Maecenas quis accumsan est, non ultricies magna. Maecenas at orci molestie, tincidunt massa sit amet, ultricies orci. Mauris venenatis nulla vel ante tincidunt volutpat. Etiam ultricies imperdiet dolor nec porta. Vestibulum id laoreet libero. Maecenas ut tincidunt quam, sed mollis magna. Suspendisse potenti. Aliquam ut sem finibus, posuere nisl sed, aliquam diam. Donec ornare neque in sapien faucibus, quis dapibus erat vulputate. Duis vitae interdum purus. Fusce aliquet nunc tortor, ac fermentum massa sagittis ac.
+                @project.getDescription
             </div>
         </div>
     </div>

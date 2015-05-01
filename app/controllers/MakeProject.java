@@ -5,6 +5,8 @@ import play.data.*;
 import static play.data.Form.*;
 
 import views.html.makeproject.*;
+import views.html.findgroup.*;
+
 
 import models.*;
 
@@ -38,6 +40,11 @@ public class MakeProject extends Controller {
         user.setProject(Project.byDescription(project.getDescription()));
         user.save();
         return ok(summary.render(project));
+    }
+
+    public static Result index(String description){
+        Project project = Project.byDescription(description);
+        return ok(projectsummary.render(project));
     }
   
 }

@@ -3,37 +3,38 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET         /                    controllers.Application.index()
 
 # Signup
-GET     /signup                     controllers.SignUp.blank()
+GET         /signup              controllers.SignUp.blank()
 #GET     /users/fakeuser             controllers.SignUp.edit()
-POST    /signup                     controllers.SignUp.submit()
+POST        /signup              controllers.SignUp.submit()
 
 # Login
-GET		/login 						controllers.Login.blank()
-POST	/loggedin					controllers.Login.submit()
+GET         /login               controllers.Login.blank()
+POST        /loggedin            controllers.Login.submit()
 
 # Session page
-POST		/newSession          	controllers.Session.createSession()
-GET         /session             	controllers.Session.index(topic)
+POST        /newSession          controllers.Session.createSession()
+GET         /session             controllers.Session.index(topic)
 
 # Make group
-GET 		/makegroup				controllers.MakeGroup.blank()
-POST		/groupmade				controllers.MakeGroup.submit()
+GET         /makegroup           controllers.MakeGroup.blank()
+POST        /groupmade           controllers.MakeGroup.submit()
 
 # Find
-GET			/findgroup				controllers.FindGroup.blank()
-GET			/group 					controllers.FindGroup.submit()
+GET         /findgroup           controllers.FindGroup.blank()
+GET         /group               controllers.FindGroup.submit()
 
 # Make session
-GET			/makesession			controllers.MakeSession.blank()
-POST		/sessionmade			controllers.MakeSession.submit()
+GET         /makesession         controllers.MakeSession.blank()
+POST        /sessionmade         controllers.MakeSession.submit()
 
 
 # Make project
-GET			/makeproject			controllers.MakeProject.blank()
-POST		/projectmade			controllers.MakeProject.submit()
+GET         /makeproject         controllers.MakeProject.blank()
+POST        /projectmade         controllers.MakeProject.submit()
+GET			/project			 controllers.MakeProject.index(description)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)

@@ -16,4 +16,5 @@ public interface ProjectDAO {
 	List<User> findUsersByProjectId(Long projectId) throws SQLException;
 	
 	Project findProjectByProjectId(Long projectId) throws SQLException;
+
 }

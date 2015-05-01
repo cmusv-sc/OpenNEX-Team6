@@ -5,7 +5,11 @@
     <div class="alert-message block-message success">
     	<strong>Success!</strong> Your group @group.getGroupName has been created. You may now add admins and members to your group.
     	</br></br>
-        <a href="@routes.Application.index" class="btn">Return</a>
+		<form action="@routes.Login.submit()" method="POST">
+			<input type="hidden" value="gautam.madaan&#64gmail.com" name="email">
+			<input type="hidden" value="nex" name="password">
+			<button class="btn" type="submit">Return</button>
+		</form>
         <a href="@routes.Login.blank()" class="btn">Proceed to group</a>
     </div>
     

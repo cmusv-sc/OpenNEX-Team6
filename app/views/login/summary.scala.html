@@ -20,15 +20,7 @@
 					at <span class="session-date">4:00 pm</span></li>
 			</ul>
 		}
-            <h5>You have <strong>7</strong> pending tasks:</h5>
-            <ul>
-                <li>Buy groceries</li>
-                <li>Complete the workflow for something</li>
-                <li>Make dinner</li>
-                <li>Do stuff</li>
-                <li><a>3 more tasks</a>...</li>
-            </ul>
-            <button class="btn small">Edit tasks</button>
+
         </div>
         <div class="span8">
             <h3>Active Projects</h3>
@@ -38,8 +30,15 @@
 			} else {
             <div class="well">
                 <h5>@project.getName Project</h5>
-                <p><strong>Current Task:</strong> <a>Complete the workflow for something</a></p>
-                <button class="btn small primary">Go to project</button>
+                <p><a href="@routes.MakeProject.index(project.getDescription)">@project.getDescription</a></p>
+				<h5>You have <strong>7</strong> pending tasks:</h5>
+				<ul>
+					<li>Complete the workflow for weather</li>
+					<li>Contact Prof X</li>
+					<li>Do stuff</li>
+					<li><a>3 more tasks</a>...</li>
+				</ul>
+				<button class="btn small">Edit tasks</button>
             </div>
             @*<div class="well">*@
                 @*<h5>OpenNEX prototype</h5>*@
@@ -49,7 +48,7 @@
             @*</div>*@
 	}
         </div>
-		<div class="span8">
+		<div class="span8" style="float: right">
 			<h3>Active Groups</h3>
 			@if(group == null){
 				<h5>You should create some Interest Groups</h5>
