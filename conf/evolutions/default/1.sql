@@ -10,7 +10,8 @@ create table notification_event (
 ;
 
 create table project (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
+  name                      varchar(255),
   description               varchar(255),
   session_id                bigint,
   user_group_id             bigint,
@@ -48,10 +49,10 @@ create table user (
 ;
 
 create table user_group (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   group_name                varchar(255),
   group_description         varchar(255),
-  users_id                  bigint,
+  user_id                   bigint,
   admin_id                  bigint,
   session_id                bigint,
   project_id                bigint,
@@ -84,13 +85,9 @@ create table notification_event_project (
 ;
 create sequence notification_event_seq;
 
-create sequence project_seq;
-
 create sequence task_seq;
 
 create sequence user_seq;
-
-create sequence user_group_seq;
 
 alter table project add constraint fk_project_session_1 foreign key (session_id) references session (id) on delete restrict on update restrict;
 create index ix_project_session_1 on project (session_id);
@@ -112,8 +109,8 @@ alter table user add constraint fk_user_task_9 foreign key (task_id) references 
 create index ix_user_task_9 on user (task_id);
 alter table user add constraint fk_user_project_10 foreign key (project_id) references project (id) on delete restrict on update restrict;
 create index ix_user_project_10 on user (project_id);
-alter table user_group add constraint fk_user_group_users_11 foreign key (users_id) references user (id) on delete restrict on update restrict;
-create index ix_user_group_users_11 on user_group (users_id);
+alter table user_group add constraint fk_user_group_user_11 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_user_group_user_11 on user_group (user_id);
 alter table user_group add constraint fk_user_group_admin_12 foreign key (admin_id) references user (id) on delete restrict on update restrict;
 create index ix_user_group_admin_12 on user_group (admin_id);
 alter table user_group add constraint fk_user_group_session_13 foreign key (session_id) references session (id) on delete restrict on update restrict;
@@ -167,11 +164,7 @@ SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists notification_event_seq;
 
-drop sequence if exists project_seq;
-
 drop sequence if exists task_seq;
 
 drop sequence if exists user_seq;
-
-drop sequence if exists user_group_seq;
 

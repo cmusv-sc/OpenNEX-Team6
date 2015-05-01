@@ -1,22 +1,21 @@
 package models;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+
+import javax.persistence.*;
 
 @Entity
 public class Project extends Model {
 	
 	@Id
     @Constraints.Min(10)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
+
+    @Column
+    @Constraints.Required
+    public String name;
 
     @Column
     @Constraints.Required
@@ -30,6 +29,30 @@ public class Project extends Model {
     
     @OneToOne
     public User user;
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public static Finder<Long, Project> find = new Finder<Long, Project>(
+            Long.class, Project.class
+    );
+
+    public static Project byId(Long id) {
+        return find.where()
+                .eq("id", id)
+                .findUnique();
+    }
+
+    public static Project byDescription(String description) {
+        return find.where()
+                .eq("description", description)
+                .findUnique();
+    }
 
 	public Long getId() {
 		return id;
@@ -67,7 +90,7 @@ public class Project extends Model {
 		return user;
 	}
 
-	public void setUsers(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
     

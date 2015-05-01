@@ -1,4 +1,4 @@
-@(signupForm: Form[UserGroup])
+@(signupForm: Form[models.UserGroup])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -15,14 +15,14 @@
             <legend>Group information</legend>
             
             @inputText(
-                signupForm("username"), 
+                signupForm("groupName"),
                 '_label -> "Name", 
                 '_help -> "Enter the name of your group.",
                 '_error -> signupForm.globalError
             )
             
             @textarea(
-                signupForm("desc"),
+                signupForm("groupDescription"),
                 '_label -> "Description",
                 '_help -> "Enter a short description about your group."
             )

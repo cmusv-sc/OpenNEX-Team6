@@ -13,7 +13,7 @@ public class MakeProject extends Controller {
     /**
      * Defines a form wrapping the User class.
      */ 
-    final static Form<Project> signupForm = form(Project.class);
+    final static Form<models.Project> signupForm = form(models.Project.class);
   
     /**
      * Display a blank form.
@@ -27,8 +27,17 @@ public class MakeProject extends Controller {
      * Handle the form submission.
      */
     public static Result submit() {
-        
-        return ok(summary.render(new Project()));
+
+       Form<models.Project> filledForm = signupForm.bindFromRequest();
+        System.out.println(filledForm);
+        Project project = filledForm.get();
+        User user = User.byId(1L);
+        project.setUser(user);
+        project.setSession(user.getSession());
+        project.save();
+        user.setProject(Project.byDescription(project.getDescription()));
+        user.save();
+        return ok(summary.render(project));
     }
   
 }

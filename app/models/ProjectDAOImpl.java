@@ -115,7 +115,7 @@ public class ProjectDAOImpl extends CommonDAOImpl implements ProjectDAO {
 			
 			project.setSession(session);
 			//project.setUserGroup(userGroup);
-			project.setUsers(user);
+			project.setUser(user);
 			
 			return project;
 		}

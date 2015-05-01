@@ -127,6 +127,14 @@ public class User extends Model {
     public void setUserGroup(UserGroup userGroup) {
         this.userGroup = userGroup;
     }
+
+    public Project getProject(){
+        return this.project;
+    }
+
+    public void setProject(Project project){
+        this.project = project;
+    }
     
     
 

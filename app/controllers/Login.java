@@ -37,7 +37,7 @@ public class Login extends Controller {
             return badRequest(form.render(filledForm));
         } else {
             User user = User.byEmail(filledForm.get().getEmail());
-            return ok(summary.render(filledForm.get(), user.getSession()));
+            return ok(summary.render(filledForm.get(), user.getSession(), user.getProject(), user.getUserGroup()));
         }
     }
 }

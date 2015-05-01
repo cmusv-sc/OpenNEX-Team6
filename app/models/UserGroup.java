@@ -1,7 +1,5 @@
 package models;
 
-import java.util.List;
-
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -12,6 +10,7 @@ public class UserGroup extends Model {
 		
 	@Id
     @Constraints.Min(10)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -22,7 +21,7 @@ public class UserGroup extends Model {
     private String groupDescription; 
 	
 	@OneToOne
-    public User users;
+    public User user;
 	
 	@OneToOne
     private User admin;
@@ -60,8 +59,8 @@ public class UserGroup extends Model {
         this.admin = admin;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUser(User users) {
+        this.user = users;
     }
 
     public void setSession(Session session) {
@@ -84,8 +83,8 @@ public class UserGroup extends Model {
         return this.admin;
     }
 
-    public User getUsers() {
-        return this.users;
+    public User getUser() {
+        return this.user;
     }
 
     public Session getSession() {
@@ -96,5 +95,13 @@ public class UserGroup extends Model {
 		return "Group [group Id = " + id + ", group name = " + groupName + 
 			   ", group description = " + groupDescription + "]"; 
 	}
+
+    public Project getProject(){
+        return this.project;
+    }
+
+    public void setProject(Project project){
+        this.project = project;
+    }
     
 }

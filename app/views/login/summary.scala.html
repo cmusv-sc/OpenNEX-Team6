@@ -1,4 +1,4 @@
-@(user: models.User, session: models.Session)
+@(user: models.User, session: models.Session, project: models.Project, group: models.UserGroup)
 
 @main(Html("My OpenNEX Homepage"), nav = "user") {
     
@@ -32,19 +32,36 @@
         </div>
         <div class="span8">
             <h3>Active Projects</h3>
+			@if(project == null){
+				<h5>You aren't involved in any projects </h5>
+				<p><a href=@routes.MakeProject.blank()> + Start a project</a></p>
+			} else {
             <div class="well">
-                <h5>Earthquake Prediction Project</h5>
-                <p>This project is about predicting earthquake by running workflows.</p>
+                <h5>@project.getName Project</h5>
                 <p><strong>Current Task:</strong> <a>Complete the workflow for something</a></p>
                 <button class="btn small primary">Go to project</button>
             </div>
-            <div class="well">
-                <h5>OpenNEX prototype</h5>
-                <p>Sed nulla orci, feugiat nec blandit ac, congue pretium ex. Vestibulum blandit sapien eget lacus laoreet elementum. Donec tristique magna eget sodales fermentum. Aliquam pellentesque dictum ipsum, sit amet congue nulla.</p>
-                <p>No Pending Tasks</p>
-                <button class="btn small primary">Go to project</button>
-            </div>
+            @*<div class="well">*@
+                @*<h5>OpenNEX prototype</h5>*@
+                @*<p>Sed nulla orci, feugiat nec blandit ac, congue pretium ex. Vestibulum blandit sapien eget lacus laoreet elementum. Donec tristique magna eget sodales fermentum. Aliquam pellentesque dictum ipsum, sit amet congue nulla.</p>*@
+                @*<p>No Pending Tasks</p>*@
+                @*<button class="btn small primary">Go to project</button>*@
+            @*</div>*@
+	}
         </div>
+		<div class="span8">
+			<h3>Active Groups</h3>
+			@if(group == null){
+				<h5>You should create some Interest Groups</h5>
+				<p><a href=@routes.MakeGroup.blank()> + Start my own group</a></p>
+			} else {
+				<div class="well">
+					<h5>@group.getGroupName </h5>
+					<p>@group.getGroupDescription</p>
+					<button class="btn small primary">Go to my Group</button>
+				</div>
+			}
+		</div>
     </div>
 
 	<div class="row">

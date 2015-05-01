@@ -13,7 +13,7 @@ public class MakeGroup extends Controller {
     /**
      * Defines a form wrapping the User class.
      */ 
-    final static Form<UserGroup> signupForm = form(UserGroup.class);
+    final static Form<models.UserGroup> signupForm = form(models.UserGroup.class);
   
     /**
      * Display a blank form.
@@ -27,8 +27,17 @@ public class MakeGroup extends Controller {
      * Handle the form submission.
      */
     public static Result submit() {
-        
-        return ok(summary.render(new UserGroup()));
+        Form<models.UserGroup> filledForm = signupForm.bindFromRequest();
+        System.out.println(filledForm);
+        UserGroup userGroup = filledForm.get();
+        User user = User.byId(1L);
+        userGroup.setUser(user);
+        userGroup.setSession(user.getSession());
+        userGroup.setProject(user.getProject());
+        userGroup.save();
+        user.setUserGroup(userGroup);
+        user.save();
+        return ok(summary.render(userGroup));
     }
   
 }
