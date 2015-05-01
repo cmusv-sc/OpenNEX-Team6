@@ -1,4 +1,4 @@
-@(user: models.Session)
+@(session: models.Session)
 
 @main(Html("Session created!"), nav = "makesession") {
     
@@ -6,7 +6,7 @@
     	<strong>Success!</strong> Your session has been created. You may now invite members to the session.
     	</br></br>
         <a href="@routes.Application.index" class="btn">Return</a>
-        <a href="@routes.Login.blank()" class="btn">Proceed to session</a>
+        <a href="@routes.Session.index(session.getTopic)" class="btn">Proceed to session</a>
     </div>
     
 }

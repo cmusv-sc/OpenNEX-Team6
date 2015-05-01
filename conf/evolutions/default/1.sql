@@ -12,16 +12,17 @@ create table notification_event (
 create table project (
   id                        bigint not null,
   description               varchar(255),
-  session_id                integer,
+  session_id                bigint,
   user_group_id             bigint,
   user_id                   bigint,
   constraint pk_project primary key (id))
 ;
 
 create table session (
-  id                        integer auto_increment not null,
+  id                        bigint auto_increment not null,
   topic                     varchar(255),
   description               varchar(255),
+  user_id                   bigint,
   admin                     varchar(255),
   constraint pk_session primary key (id))
 ;
@@ -38,7 +39,7 @@ create table user (
   id                        bigint not null,
   email                     varchar(255),
   password                  varchar(255),
-  session_id                integer,
+  session_id                bigint,
   user_group_id             bigint,
   task_id                   bigint,
   project_id                bigint,
@@ -52,7 +53,7 @@ create table user_group (
   group_description         varchar(255),
   users_id                  bigint,
   admin_id                  bigint,
-  session_id                integer,
+  session_id                bigint,
   project_id                bigint,
   constraint pk_user_group primary key (id))
 ;
@@ -72,7 +73,7 @@ create table notification_event_user_group (
 
 create table notification_event_session (
   notification_event_id          bigint not null,
-  session_id                     integer not null,
+  session_id                     bigint not null,
   constraint pk_notification_event_session primary key (notification_event_id, session_id))
 ;
 
@@ -97,26 +98,28 @@ alter table project add constraint fk_project_userGroup_2 foreign key (user_grou
 create index ix_project_userGroup_2 on project (user_group_id);
 alter table project add constraint fk_project_user_3 foreign key (user_id) references user (id) on delete restrict on update restrict;
 create index ix_project_user_3 on project (user_id);
-alter table task add constraint fk_task_user_4 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_task_user_4 on task (user_id);
-alter table task add constraint fk_task_project_5 foreign key (project_id) references project (id) on delete restrict on update restrict;
-create index ix_task_project_5 on task (project_id);
-alter table user add constraint fk_user_session_6 foreign key (session_id) references session (id) on delete restrict on update restrict;
-create index ix_user_session_6 on user (session_id);
-alter table user add constraint fk_user_userGroup_7 foreign key (user_group_id) references user_group (id) on delete restrict on update restrict;
-create index ix_user_userGroup_7 on user (user_group_id);
-alter table user add constraint fk_user_task_8 foreign key (task_id) references task (id) on delete restrict on update restrict;
-create index ix_user_task_8 on user (task_id);
-alter table user add constraint fk_user_project_9 foreign key (project_id) references project (id) on delete restrict on update restrict;
-create index ix_user_project_9 on user (project_id);
-alter table user_group add constraint fk_user_group_users_10 foreign key (users_id) references user (id) on delete restrict on update restrict;
-create index ix_user_group_users_10 on user_group (users_id);
-alter table user_group add constraint fk_user_group_admin_11 foreign key (admin_id) references user (id) on delete restrict on update restrict;
-create index ix_user_group_admin_11 on user_group (admin_id);
-alter table user_group add constraint fk_user_group_session_12 foreign key (session_id) references session (id) on delete restrict on update restrict;
-create index ix_user_group_session_12 on user_group (session_id);
-alter table user_group add constraint fk_user_group_project_13 foreign key (project_id) references project (id) on delete restrict on update restrict;
-create index ix_user_group_project_13 on user_group (project_id);
+alter table session add constraint fk_session_user_4 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_session_user_4 on session (user_id);
+alter table task add constraint fk_task_user_5 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_task_user_5 on task (user_id);
+alter table task add constraint fk_task_project_6 foreign key (project_id) references project (id) on delete restrict on update restrict;
+create index ix_task_project_6 on task (project_id);
+alter table user add constraint fk_user_session_7 foreign key (session_id) references session (id) on delete restrict on update restrict;
+create index ix_user_session_7 on user (session_id);
+alter table user add constraint fk_user_userGroup_8 foreign key (user_group_id) references user_group (id) on delete restrict on update restrict;
+create index ix_user_userGroup_8 on user (user_group_id);
+alter table user add constraint fk_user_task_9 foreign key (task_id) references task (id) on delete restrict on update restrict;
+create index ix_user_task_9 on user (task_id);
+alter table user add constraint fk_user_project_10 foreign key (project_id) references project (id) on delete restrict on update restrict;
+create index ix_user_project_10 on user (project_id);
+alter table user_group add constraint fk_user_group_users_11 foreign key (users_id) references user (id) on delete restrict on update restrict;
+create index ix_user_group_users_11 on user_group (users_id);
+alter table user_group add constraint fk_user_group_admin_12 foreign key (admin_id) references user (id) on delete restrict on update restrict;
+create index ix_user_group_admin_12 on user_group (admin_id);
+alter table user_group add constraint fk_user_group_session_13 foreign key (session_id) references session (id) on delete restrict on update restrict;
+create index ix_user_group_session_13 on user_group (session_id);
+alter table user_group add constraint fk_user_group_project_14 foreign key (project_id) references project (id) on delete restrict on update restrict;
+create index ix_user_group_project_14 on user_group (project_id);
 
 
 

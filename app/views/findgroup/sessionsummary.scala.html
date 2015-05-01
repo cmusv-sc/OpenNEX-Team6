@@ -1,9 +1,9 @@
-@(user: UserGroup)
+@(session: models.Session)
 
 @main(Html("Session Summary"), nav = "") {
     
 
-    <h2>Session name</h2>
+    <h2>@session.getTopic</h2>
     <br/>
 
 

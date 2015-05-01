@@ -19,7 +19,7 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
             try {
                 Connection connection = getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL.INSERT_SESSION);
-                preparedStatement.setString(1, session.getSessionTopic());
+                preparedStatement.setString(1, session.getTopic());
                 preparedStatement.setString(2, session.getDescription());
                 preparedStatement.setString(3, session.getAdmin());
 
@@ -47,14 +47,19 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
                 Session session = null;
                 List<User> users = new ArrayList<User>();
                 while (resultSet.next()) {
-                    if (session == null)
-                        session = new Session(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
-                    System.out.println(session.getSessionTopic());
+                    if (session == null) {
+                        session = new Session();
+                        session.setAdmin(resultSet.getString(4));
+                        session.setDescription(resultSet.getString(3));
+                        session.setTopic(resultSet.getString(2));
+                        session.setId(resultSet.getLong(1));
+                    }
+                    System.out.println(session.getTopic());
                     break;
                 }
                 // get users of this session
                 if (session != null) {
-                    session.setSessionUsers(getUsersForSession(session.getSessionID()));
+                    session.setUsers(getUsersForSession(session.getId()));
                 }
                 else
                     System.out.println("Session is Null");
@@ -152,11 +157,11 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
      * @return
      * @throws SQLException
      */
-    private List<User> getUsersForSession(int id) throws SQLException {
+    private List<User> getUsersForSession(Long id) throws SQLException {
         System.out.println("Inside Get USers");
         Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SQL.GET_USERS_FOR_SESSIONID);
-        preparedStatement.setInt(1, id);
+        preparedStatement.setLong(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         List<User> sessionUsers = new ArrayList<User>();
 
@@ -186,7 +191,10 @@ public class SessionDAOImpl extends CommonDAOImpl implements SessionDAO {
             stmt.setLong(1, id);
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()){
-                Session session = new Session(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+                Session session = new Session();
+                session.setAdmin(resultSet.getString(4));
+                session.setDescription(resultSet.getString(3));
+                session.setTopic(resultSet.getString(2));
                 sessions.add(session);
             }
         }

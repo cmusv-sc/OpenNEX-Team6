@@ -27,7 +27,7 @@ public class User extends Model {
     @Constraints.Required(groups = { SignIn.class, SignUp.class, Update.class })
     private String password;
     
-    @ManyToOne
+    @OneToOne
     private Session session;
     
     @OneToOne

@@ -1,4 +1,4 @@
-@(signupForm: Form[UserFake])
+@(signupForm: Form[User])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -15,7 +15,7 @@
             <legend>Account information</legend>
             
             @inputText(
-                signupForm("sumsht"), 
+                signupForm("userName"),
                 '_label -> "Username", 
                 '_help -> "Please choose a valid username.",
                 '_error -> signupForm.globalError

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Session;
 import play.mvc.*;
 import play.data.*;
 import static play.data.Form.*;
@@ -13,7 +14,7 @@ public class Login extends Controller {
     /**
      * Defines a form wrapping the User class.
      */ 
-    final static Form<UserFake> loginForm = form(UserFake.class, UserFake.DoLog.class);
+    final static Form<models.User> loginForm = form(models.User.class);
   
     /**
      * Display a blank form.
@@ -26,18 +27,17 @@ public class Login extends Controller {
      * Handle the form submission.
      */
     public static Result submit() {
-        Form<UserFake> filledForm = loginForm.bindFromRequest();
+        Form<models.User> filledForm = loginForm.bindFromRequest();
         
-        if (filledForm.get().password.equals("password")) {
+        if (filledForm.get().getPassword().equals("password")) {
             filledForm.reject("password", "Your username or password was incorrect");
         }
         
         if(filledForm.hasErrors()) {
             return badRequest(form.render(filledForm));
         } else {
-            UserFake created = filledForm.get();
-            return ok(summary.render(created));
+            User user = User.byEmail(filledForm.get().getEmail());
+            return ok(summary.render(filledForm.get(), user.getSession()));
         }
     }
-  
 }

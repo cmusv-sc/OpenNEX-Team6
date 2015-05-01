@@ -16,7 +16,7 @@ public class ProjectDAOImpl extends CommonDAOImpl implements ProjectDAO {
                 Connection connection = getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL.INSERT_PROJECT);
                 preparedStatement.setString(1, project.getDescription());
-                preparedStatement.setLong(2, project.getSession().getSessionID());
+                preparedStatement.setLong(2, project.getSession().getId());
                 preparedStatement.setLong(3, project.getUserGroup().getGroupId());
 
                 executeStatement(preparedStatement);
@@ -90,7 +90,10 @@ public class ProjectDAOImpl extends CommonDAOImpl implements ProjectDAO {
 			ResultSet resultSet1 = preparedStatement1.executeQuery();
 			
 			while(resultSet.next()) {
-				session = new Session(resultSet1.getString(2), resultSet1.getString(3), resultSet1.getString(4));
+                session = new Session();
+                session.setAdmin(resultSet.getString(4));
+                session.setDescription(resultSet.getString(3));
+                session.setTopic(resultSet.getString(2));
 			}
 			
 			PreparedStatement preparedStatement2 = connection.prepareStatement(SQL.GET_USERGROUP_FOR_ID);

@@ -1,4 +1,4 @@
-@(loginForm: Form[UserFake])
+@(loginForm: Form[models.User])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -15,8 +15,8 @@
             <legend>Account information</legend>
             
             @inputText(
-                loginForm("username"), 
-                '_label -> "Username", 
+                loginForm("email"),
+                '_label -> "email",
                 '_help -> "",
                 '_error -> loginForm.globalError
             )

@@ -28,6 +28,7 @@ public class SQL {
     public static final String GET_USERS_FOR_SESSIONID = "SELECT * FROM " + SA_USERS
             + " WHERE SESSION_ID = ?";
 
+
     /************************************ Session *********************************/
 
     public static final String GET_SESSION_BY_TOPIC = "SELECT * FROM "

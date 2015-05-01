@@ -15,15 +15,15 @@
             <legend>Session information</legend>
             
             @inputText(
-                signupForm("username"), 
-                '_label -> "Name", 
+                signupForm("topic"),
+                '_label -> "topic",
                 '_help -> "Enter the name of this session.",
                 '_error -> signupForm.globalError
             )
             
-            @textarea(
-                signupForm("desc"),
-                '_label -> "Description",
+            @inputText(
+                signupForm("description"),
+                '_label -> "description",
                 '_help -> "Enter a short description for this session."
             )
             

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Session;
 import play.mvc.*;
 import play.data.*;
 import static play.data.Form.*;
@@ -26,7 +27,14 @@ public class MakeSession extends Controller {
      * Handle the form submission.
      */
     public static Result submit() {
-        
-        return ok(summary.render(new models.Session()));
+        Form<models.Session> sessionForm =  signupForm.bindFromRequest();
+        models.Session session = sessionForm.get();
+        session.setAdmin(System.getProperty("user.name"));
+        User user = User.byId(1L);
+        session.setUser(user);
+        session.save();
+        user.setSession(session.byTopic(session.getTopic()));
+        user.save();
+        return ok(summary.render(session));
     }
 }
