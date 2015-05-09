@@ -7,6 +7,10 @@
         <option name="jdk" value="1.8" />
         <option name="sbtVersion" value="0.13.0" />
       </SbtProjectSettings>
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/.idea/modules" />
+        <option name="useAutoImport" value="true" />
+      </SbtProjectSettings>
     </option>
   </component>
 </project>
