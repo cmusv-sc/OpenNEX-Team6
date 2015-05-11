@@ -2,8 +2,8 @@
 <H2>Testing</H2>
 <ul>
   <li> Download the repository.
-  <li> From command prompt Cd into the above project directory.
-  <li> Enter command play run (play framework should be installed on the machine).
+  <li> From command prompt cd into the above project directory.
+  <li> Enter command <b>"play run"</b> (play framework should be installed on the machine).
 </ul>
 
 <h2>Development</H2>
