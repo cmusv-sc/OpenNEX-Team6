@@ -1,9 +1,9 @@
 # OpenNEX-Team6
 
 <H1> Purpose of the project <H2>
-<p>The NASA Earth Exchange (NEX) represents a new platform for the Earth science community that provides a mechanism for scientific collaboration and knowledge sharing.  NEX combines state-of-the-art supercomputing, Earth system modeling, workflow management, NASA remote sensing data feeds, and a knowledge sharing platform to deliver a complete work environment in which users can explore and analyze large datasets, run modeling codes, collaborate on new or existing projects, and quickly share results among the Earth Science communities.
+<p align="justify">The NASA Earth Exchange (NEX) represents a new platform for the Earth science community that provides a mechanism for scientific collaboration and knowledge sharing.  NEX combines state-of-the-art supercomputing, Earth system modeling, workflow management, NASA remote sensing data feeds, and a knowledge sharing platform to deliver a complete work environment in which users can explore and analyze large datasets, run modeling codes, collaborate on new or existing projects, and quickly share results among the Earth Science communities.
 </p>
-<p> In this project we try to explore to facets of Open NEX i.e. Social Networks and Project Management. The above prototype has been designed and developed as part of a semester long project for 'Software Architecture and Design' course taught by Prof. Jia Zhang at Carnegie Mellon Universtiy, Silicon Valley campus. 
+<p align="justify"> In this project we try to explore to facets of Open NEX i.e. Social Networks and Project Management. The above prototype has been designed and developed as part of a semester long project for 'Software Architecture and Design' course taught by Prof. Jia Zhang at Carnegie Mellon Universtiy, Silicon Valley campus. 
 <p>
 
 <H1>How to download, install, and run</H1>
