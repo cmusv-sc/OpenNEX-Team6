@@ -19,14 +19,16 @@ public class FindGroup extends Controller {
      * Display a blank form.
      */ 
     public static Result blank() {
-        return ok(form.render(loginForm));
+        return ok(searchForm.render(loginForm));
     }
   
     /**
      * Handle the form submission.
      */
     public static Result submit() {
-        return ok(sessionsummary.render(new UserGroup()));
+        Form<models.UserGroup> userGroupForm =  loginForm.bindFromRequest();
+        models.UserGroup userGroup = userGroupForm.get();
+        return ok(groupsummary.render(userGroup));
     }
   
 }
